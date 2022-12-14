@@ -14,27 +14,26 @@
   <header class="main-header flex">
     <div class="header-container flex align-center space-between">
       <img src="img/logo-meme.png" alt="logo" class="logo">
-    <!-- <h1>Awesome Meme Generator</h1> -->
-    <nav class="main-nav flex">
+      <!-- <h1>Awesome Meme Generator</h1> -->
+      <nav class="main-nav flex">
 
-      
-      <ul class="nav-list flex clean-list ">
-        <li><a href="#" onclick="onGalleryNav()">Gallery</a></li>
-        <li><a href="#" onclick="onMemeNav()">Meme</a></li>
-        <li><a href="#" onclick="onAboutNav()">About</a></li>
-      </ul>
-    </nav>
-    <!-- burger -->
-    <!-- <button class="menu-toggle-btn" onclick="toggleMenu()">☰</button>
+        <ul class="nav-list flex clean-list ">
+          <li><a href="#" onclick="onGalleryNav()">Gallery</a></li>
+          <li><a href="#" onclick="onMemeNav()">Meme</a></li>
+          <li><a href="https://ireneduchovny.github.io/Projects-gallery/" target="_blank">About</a></li>
+        </ul>
+      </nav>
+      <!-- burger -->
+      <!-- <button class="menu-toggle-btn" onclick="toggleMenu()">☰</button>
          -->
-  </div>
+    </div>
   </header>
 
   <!-- Main gallery section -->
   <section class="main-gallery">
-    
+
     <!-- <h1>Main gallery section </h1> -->
-    <div class="gallery-area grid-container" ></div>
+    <div class="gallery-area grid-container"></div>
   </section>
 
   <!-- meme editor page -->
@@ -50,23 +49,31 @@
         <input type="text" class="text-line" placeholder="Enter text">
 
         <div class="text-line-btns">
-          <button class="move-up-btn">⬆️</button>
-          <button class="move-down-btn">⬇️</button>
+          <button class="move-up-btn" title="move up">⬆️</button>
+          <button class="move-down-btn" title="move down">⬇️</button>
           <button class="switch-btn">🔁</button>
-          <button class="add-btn">➕</button>
-          <button class="delete-btn">🗑️</button>
+          <!-- <input type="text" class="add-line-btn" placeholder="Enter text"> -->
+          <button class="add-line-btn" title="add text" onclick="onAddLine()">➕</button>
+          <button class="delete-btn" title="delete line">🗑️</button>
         </div>
         <div class="main-formating">
           <button class="bigger-font-btn">➕</button>
           <button class="smaller-font-btn">➖</button>
           <button class="align-left-btn">👈</button>
-          </div><div>
+        </div>
+        <div>
           <button class="align-center-btn">center</button>
           <button class="align-right-btn">👉</button>
-          <button class="choose-font-btn">choose font</button>
-          <button class="stroke-color-btn">stroke color</button>
-          <button class="font-color-btn">font color</button>
-          
+          <select class="choose-font-btn">
+            <option>Impact</option>
+            <option>Arial</option>
+            <option>Cursive</option>
+            <option>Shrikhand</option>
+          </select>
+          <input value="#ffffff" class="stroke-color-btn" type="color">
+          <!-- <button class="stroke-color-btn">stroke color</button> -->
+          <input value="#ffffff" class="font-color-input" type="color">
+
         </div>
       </div>
     </div>

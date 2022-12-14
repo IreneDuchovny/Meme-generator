@@ -22,3 +22,11 @@ function onImgSelect(imgId) {
     renderGallery()
     renderMeme()
 }
+
+
+function onGalleryNav() {
+    var elGallery = document.querySelector('.main-gallery')
+    elGallery.classList.remove('hide')
+    var elEditor = document.querySelector('.meme-main-editor')
+    elEditor.classList.add('hide')
+}
