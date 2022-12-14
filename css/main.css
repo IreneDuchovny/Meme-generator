@@ -1,17 +1,17 @@
 /* Setup */
-@import '/css/setup/vars.css';
-@import '/css/setup/font-face.css';
+@import 'setup/vars.css';
+@import 'setup/font-face.css';
 
 /* Basic */
-@import '/css/basic/base.css';
+@import 'basic/base.css';
 
-@import '/css/basic/buttons.css';
-@import '/css/basic/icons.css';
-@import '/css/basic/helpers.css';
+@import 'basic/buttons.css';
+@import 'basic/icons.css';
+@import 'basic/helpers.css';
 /* @import '/css/basic/layout.css'; */
 
 
-@import '/css/cmpts/header.css';
+@import 'cmpts/header.css';
 
 
 * {
