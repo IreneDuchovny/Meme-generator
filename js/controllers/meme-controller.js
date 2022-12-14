@@ -13,16 +13,20 @@ function onMemeInit() {
     // resizeCanvas()
 
     renderMeme()
+onSetListeners()
+
+
 }
 
 //renders currState of canvas
 function renderMeme() {
     var img = new Image()
+    var currMeme = getMeme()
 
-    img.src = gMeme.selectedImgUrl
+    img.src = currMeme.selectedImgUrl
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        gMeme.lines.forEach(line => {
+        currMeme.lines.forEach(line => {
             gCtx.lineWidth = '2';
             // gCtx.strokeStyle = line.strokeColor;
             gCtx.fillStyle = line.color;
@@ -33,3 +37,13 @@ function renderMeme() {
         })
     }
 }
+
+function onSetListeners() {
+    const input = document.querySelector('.text-line');
+input.addEventListener('input', onUpdateText);
+}
+
+function onUpdateText(ev) {
+    setLineTxt(ev.target.value)
+    renderMeme()
+  }

@@ -19,3 +19,15 @@ var gMeme = {
         }
     ]
 }
+
+
+function getMeme() {
+    return gMeme
+}
+
+
+//updates a line's text (for the selected/edited line)
+function setLineTxt(txt) {
+    gMeme.lines[gMeme.selectedLineIdx].txt = txt
+
+}
