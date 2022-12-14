@@ -1,0 +1,57 @@
+
+
+/* Setup */
+@import '/css/setup/vars.css';
+@import '/css/setup/font-face.css';
+
+/* Basic */
+@import '/css/basic/base.css';
+
+@import '/css/basic/buttons.css';
+@import '/css/basic/icons.css';
+@import '/css/basic/helpers.css';
+@import '/css/basic/layout.css';
+
+
+@import '/css/cmpts/header.css';
+
+
+
+/* .navbar-brand a{
+    font-size: 10px;
+    width : 20px
+}
+
+.navbar-brand img{
+    height: 100%;
+    width: 100%;
+    border-radius: 25%;
+    border: 1px solid rgb(94, 94, 94);
+
+}
+
+.navbar {
+    background-color: rgb(248, 255, 154);
+}
+
+a.nav-link {
+    color : rgb(94, 94, 94);
+} */
+
+.main-layout {
+    background-color: rgb(255, 255, 255);
+    height: 100vh;
+}
+
+.main-canvas {
+    background-color: rgb(248, 255, 154);
+    margin-left : 25vw;
+    margin-top : 10vh;
+}
+
+
+.meme-main-editor{
+    display: none;
+}
+
+
