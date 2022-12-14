@@ -2,7 +2,6 @@
 let gElCanvas
 let gCtx
 
-
 //creates a new canvas
 function onMemeInit() {
     gElCanvas = document.querySelector('#canvas')
@@ -11,11 +10,8 @@ function onMemeInit() {
     //TODO: resizeCanvas()
     // window.addEventListener('resize', () => {
     // resizeCanvas()
-
     renderMeme()
 onSetListeners()
-
-
 }
 
 //renders currState of canvas
@@ -36,6 +32,7 @@ function renderMeme() {
             gCtx.strokeText(line.txt, line.x, line.y);
         })
     }
+    // onImgSelect()
 }
 
 function onSetListeners() {

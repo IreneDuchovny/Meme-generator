@@ -19,11 +19,12 @@
 }
 /* base.css */
 html {
-    color:black;
-    /* color:var(--clr0) */
+    /* color:black; */
+    /* color:var(--clr0); */
     padding: 0;
     font-family: 'Montserrat', bold;
     font-size: 16px;
+    /* background-color: var(--clr1); */
 
     /* letter-spacing: 0.48px;
     line-height: 1.13; */
@@ -80,12 +81,11 @@ button {
 }
 .header-container{
     display: flex;
-
     margin: 0 auto;
 /* Style for "Rectangle" */
-/* width: 1257px;
-height: 73px; */
-border-radius: 37px;
+/* /* width: 1257px; */
+/* height: 100px; */
+border-radius: 55px;
 width:100%;
 /* background-color: #5970c1; */
 background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
@@ -96,6 +96,21 @@ background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
     margin: 10px;
  }
 
+ .nav-list a{
+    padding: 11px;
+    text-decoration: none;
+    color:  var(--clr0);
+    font-size: 1.25em;
+ }
+ .nav-list a:hover{
+    padding: 10px;
+    font-style: bold;
+    border-radius: 40px;
+    border: 1px solid  var(--clr4);
+    background-color: var(--clr4);
+    color: var(--clr3);
+ }
+
  .nav-list li:last-child{
     
     margin-right: 14em;
@@ -104,7 +119,7 @@ background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
 .header-container img{
     width: 100px;
     height: 100px;
-    margin: 10px;
+    margin: 10px 0px 0px 10px;
 
 }
 
@@ -126,38 +141,32 @@ background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
 }
 
 
-.meme-main-editor {
-
-}
-
-.main-gallery {
-    display: none;
-}
-
 .meme-main-editor h1 {
     text-align: center;
 }
 
-
-
-
-/* .navbar-brand a{
-    font-size: 10px;
-    width : 20px
+.gallery-area{
+    /* Style for "Rectangle" */
+width: 1243px;
+height: 566px;
+border-radius: 10px;
+background-color: var(--clr2);
+margin-top: 15px;
 }
 
-.navbar-brand img{
-    height: 100%;
-    width: 100%;
-    border-radius: 25%;
-    border: 1px solid rgb(94, 94, 94);
-
+/* gallery grid */
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-rows: auto;
+    grid-auto-flow: dense;
+    gap: 10px;
+    padding: 60px;
+    width: auto;
+    /* margin: 0 auto; */
 }
 
-.navbar {
-    background-color: rgb(248, 255, 154);
+.grid-container img{
+   /* border: 5px solid rgb(0, 0, 0); */
+   border-radius: 37px;
 }
-
-a.nav-link {
-    color : rgb(94, 94, 94);
-} */

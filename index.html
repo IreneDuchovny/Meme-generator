@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/main.css">
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
   <title>Awesome Meme Generator</title>
 </head>
 
-<body class="main-layout" onload="onMemeInit()">
+<body class="main-layout" onload="onGalleryInit()">
 
   <header class="main-header flex">
     <div class="header-container flex align-center space-between">
@@ -31,16 +30,16 @@
   </div>
   </header>
 
-
-
   <!-- Main gallery section -->
   <section class="main-gallery">
-    <h1>Main gallery section </h1>
+    
+    <!-- <h1>Main gallery section </h1> -->
+    <div class="gallery-area grid-container" ></div>
   </section>
 
   <!-- meme editor page -->
   <!-- Main meme section -->
-  <section class="meme-main-editor">
+  <section class="meme-main-editor hide">
     <h1>Main meme section</h1>
 
     <div class="editor-container flex">
@@ -58,16 +57,20 @@
           <button class="delete-btn">🗑️</button>
         </div>
         <div class="main-formating">
-
+          <button class="bigger-font-btn">➕</button>
+          <button class="smaller-font-btn">➖</button>
+          <button class="align-left-btn">👈</button>
+          </div><div>
+          <button class="align-center-btn">center</button>
+          <button class="align-right-btn">👉</button>
+          <button class="choose-font-btn">choose font</button>
+          <button class="stroke-color-btn">stroke color</button>
+          <button class="font-color-btn">font color</button>
+          
         </div>
       </div>
     </div>
   </section>
-
-
-
-
-
 
   <script src="js/main.js"></script>
   <script src="js/services/gallery-service.js"></script>

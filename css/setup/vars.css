@@ -4,14 +4,20 @@
 
     /* brand color */
     --clr0: #ffffff;
-    
+
+    /* main background */
+    --clr1: #22252c;
+
+    /* gallery background */
+    --clr2:  #383b42;
+
+    /* button hover font */
+    --clr3: #21ac91;
+
+    /* button hover background */
+    --clr4: #fefefe;
 
 
-
-
-
-
-    
     /* bp */
     --s: 600px;
     --m: 740px;
