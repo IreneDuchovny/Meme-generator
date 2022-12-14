@@ -1,14 +1,27 @@
 @font-face {
-    font-family: eurofurence;
-    src: url("/fonts/eurof35.ttf");
+    font-family: Barlow;
+    src: url("/fonts/Barlow/BarlowCondensed-Bold.ttf");
+    src: url("/fonts/Barlow/BarlowCondensed-Light.ttf");
+    src: url("/fonts/Barlow/BarlowCondensed-Regular.ttf");
+    src: url("/fonts/Barlow/BarlowCondensed-Thin.ttf");
+
 }
 
 @font-face {
-    font-family: Lato;
-    src: url("/fonts/Lato/Lato-Regular.ttf");
+    font-family: Montserrat;
+    src: url("/fonts/Montserrat/Montserrat-Bold.ttf");
+    src: url("/fonts/Montserrat/Montserrat-Regular.ttf");
+    src: url("/fonts/Montserrat/Montserrat-Thin.ttf");
 }
 
 @font-face {
+    font-family: Raleway;
+    src: url("/fonts/Raleway/Raleway-Bold.ttf");
+    src: url("/fonts/Raleway/Raleway-Regular.ttf");
+    src: url("/fonts/Raleway/Raleway-Thin.ttf");
+}
+
+/* @font-face {
     font-family: fa;
     src: url("/fonts/fa/fa-brands-400.ttf");
-}
+} */

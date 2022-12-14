@@ -8,7 +8,7 @@
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
     <title>Awesome Meme Generator</title>
 </head>
-<body class="main-layout" onload="init()">
+<body class="main-layout" onload="onMemeInit()">
     <header class="main-header sticky-top">
 
 
@@ -60,16 +60,19 @@
 <!-- Main meme section -->
     <section class="meme-main-editor">
       <h1>Main meme section</h1>
+
+      <canvas class="main-canvas" id="canvas" width="500" height="500"></canvas>
+      
     </section>
 
 
 
 
-<!-- <canvas class="main-canvas" id="canvas" width="500" height="500"></canvas> -->
+
 
     <script src="js/main.js"></script>
-    <script src="js/services/gallery-services.js"></script>
-    <script src="js/services/meme-services.js"></script>
+    <script src="js/services/gallery-service.js"></script>
+    <script src="js/services/meme-service.js"></script>
     <script src="js/controllers/gallery-controller.js"></script>
     <script src="js/controllers/meme-controller.js"></script>
     <script src="js/storage/utils.js"></script>
