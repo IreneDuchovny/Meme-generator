@@ -6,16 +6,19 @@ let gCtx
 function onMemeInit() {
     gElCanvas = document.querySelector('#canvas')
     gCtx = gElCanvas.getContext('2d')
-
+    addLine()
+    addLine()
+    gMeme.selectedLineIdx = 0
     renderMeme()
     onSetListeners()
+
 }
 
 //renders currState of canvas
 function renderMeme() {
     var img = new Image()
     var currMeme = getMeme()
-    resizeCanvas()
+    // resizeCanvas()
 
     img.src = currMeme.selectedImgUrl
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
@@ -34,7 +37,7 @@ function renderMeme() {
 
 function onSetListeners() {
     //resize canvas
-    window.addEventListener('resize', renderMeme)
+    window.addEventListener('resize', resizeCanvas)
     //add text line
     const input = document.querySelector('.text-line');
     input.addEventListener('input', onUpdateText);
@@ -69,8 +72,8 @@ function onSetListeners() {
 function resizeCanvas() {
     gCtx.canvas.width = document.documentElement.clientWidth * 0.3
     gCtx.canvas.height = document.documentElement.clientWidth * 0.3
+    renderMeme()
 }
-
 
 //Changes the text of the selected line
 function onUpdateText(ev) {
@@ -106,6 +109,7 @@ function onStrokeColorChange(ev) {
 function onAddLine() {
     document.querySelector('.text-line').value = ''
     addLine()
+
     renderMeme()
 }
 //Deletes the selected line
@@ -129,8 +133,16 @@ function onSwitchLine() {
 //Sets a rectengle on the selected line
 function onSetFocus(line) {
     if (gMeme.selectedLineIdx === line.id && line.txt) {
+        gCtx.lineWidth = 1;
+        gCtx.strokeStyle = "gray";
         gCtx.strokeRect(3, line.y - line.size + 5, gElCanvas.width - 6, line.size);
+        document.querySelector('.text-line').value = line.txt
+        document.querySelector('.font-color-input').value = line.color
+        document.querySelector('.stroke-color-btn').value = line.strokeColor
+        document.querySelector('.choose-font-btn').value = line.font
+
     }
+
 }
 
 //Changes the font size of the selected line
@@ -145,17 +157,26 @@ function onSetFontAlign(align) {
     renderMeme()
 }
 
-//
+//Canvas click to change focus
 function onCanvasClicked(ev) {
     ev.stopPropagation()
     const { offsetX, offsetY } = ev
     const clickedLine = gMeme.lines.find(line => {
         return (
-            offsetX >= line.x && offsetX <= line.x + gElCanvas.width &&
+            offsetX >= 3 && offsetX <= line.x + gElCanvas.width &&
             offsetY >= line.y - line.size && offsetY <= line.y
         )
     })
+
     if (clickedLine) {
+        gMeme.selectedLineIdx = clickedLine.id
         onSetFocus(clickedLine)
+        renderMeme()
     }
+}
+
+//downloads the meme
+function onDownloadMeme(link) {
+    downloadMeme(link)
+
 }

@@ -46,9 +46,9 @@
     <!-- <h1>Main meme section</h1> -->
 
     <div class="editor-container flex">
-<div class="canvas-container">
-      <canvas class="main-canvas" id="canvas" width="500" height="500"></canvas>
-    </div>
+      <div class="canvas-container">
+        <canvas class="main-canvas" id="canvas" width="500" height="500"></canvas>
+      </div>
       <!--TOOL BOX section  -->
       <div class="tool-box flex">
         <input type="text" class="text-line" placeholder="Enter text">
@@ -63,25 +63,33 @@
           <button class="delete-btn" title="delete line">🗑️</button>
         </div>
         <div class="main-formating">
-          <button class="bigger-font-btn" title="enlarge font size" onclick="onsetFontSize(2)">➕</button>
-          <button class="smaller-font-btn" title="enlarge font size" onclick="onsetFontSize(-2)">➖</button>
-          <button class="align-left-btn" onclick="onSetFontAlign('right')">👈</button>
-        </div>
-        <div>
-          <button class="align-center-btn" onclick="onSetFontAlign('center')">center</button>
-          <button class="align-right-btn" onclick="onSetFontAlign('left')">👉</button>
-          <select class="choose-font-btn">
-            <option>Impact</option>
-            <option>Arial</option>
-            <option>Cursive</option>
-            <option>Shrikhand</option>
-          </select>
-          <input value="#000000" class="stroke-color-btn"  title ="stroke" type="color">
-          <!-- <button class="stroke-color-btn">stroke color</button> -->
-          <input value="#ffffff" class="font-color-input" title="font color" type="color">
+          <div class="second-line-btns">
+            <button class="bigger-font-btn" title="enlarge font size" onclick="onsetFontSize(2)">➕</button>
+            <button class="smaller-font-btn" title="enlarge font size" onclick="onsetFontSize(-2)">➖</button>
+            <button class="align-left-btn" onclick="onSetFontAlign('right')">👈</button>
 
+
+            <button class="align-center-btn fa fa-align-justify" onclick="onSetFontAlign('center')"></button>
+            <button class="align-right-btn" onclick="onSetFontAlign('left')">👉</button>
+          </div>
+          <div>
+            <select class="choose-font-btn">
+              <option>Impact</option>
+              <option>Arial</option>
+              <option>Cursive</option>
+              <option>Shrikhand</option>
+            </select>
+            <input id="stroke-id" value="#000000" class="stroke-color-btn" title="stroke" type="color">
+            <!-- <button class="stroke-color-btn">stroke color</button> -->
+            <input id="color-id" value="#ffffff" class="font-color-input" title="font color" type="color">
+            <br>
+            <!-- <label for="stroke-id" class="stroke">stroke</label>
+          <label for="color-id" class="color">color</label> -->
+
+          </div>
         </div>
-      
+        <div class="download-section"><a href="#" onclick="onDownloadMeme(this)"> download</a></div>
+
       </div>
     </div>
   </section>

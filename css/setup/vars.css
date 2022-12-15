@@ -9,7 +9,7 @@
     --clr1: #22252c;
 
     /* gallery background */
-    --clr2:  #383b42;
+    --clr2: #383b42;
 
     /* button hover font */
     --clr3: #21ac91;
@@ -17,6 +17,8 @@
     /* button hover background */
     --clr4: #fefefe;
 
+    /* text area background */
+    --clr5: #ebeef3;
 
     /* bp */
     --s: 600px;

@@ -6,17 +6,6 @@ var gMeme = {
     selectedLineIdx: 0,
 
     lines: [
-        {
-            id: 0,
-            txt: '',
-            size: 40,
-            align: 'center',
-            color: '#ffffff',
-            font: 'Impact',
-            strokeColor: 'black',
-            x: 250,
-            y: 50
-        }
     ]
 }
 
@@ -34,6 +23,7 @@ function setLineTxt(txt) {
 //updates a line's color (for the selected/edited line)
 function setLineColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color
+
 }
 
 //updates a line's font (for the selected/edited line)
@@ -47,27 +37,32 @@ function setTextStrokeColor(color) {
 
 //deletes a line
 function deleteLine() {
+    console.log('gMeme.selectedLineIdx',gMeme.selectedLineIdx )
     var delLine = gMeme.lines
     delLine.splice(gMeme.selectedLineIdx, 1)
     if (gMeme.selectedLineIdx === 0 && gMeme.lines.length === 0) {
         addLine()
+        gMeme.selectedLineIdx = 0
         return
     }
-    gMeme.selectedLineIdx--
+    if(gMeme.lines.length > 0) gMeme.selectedLineIdx--
 }
 
-
+// function createLines() {
+// addLine()
+// addLine()
+// }
 //Adds a new line to the meme(top,bottom and meddle)
 function addLine() {
     var line = {
         id: gMeme.lines.length,
-        txt: '',
+        txt: `line ${gMeme.lines.length + 1}`,
         size: 40,
         align: 'center',
         color: '#ffffff',
         font: 'Impact',
         strokeColor: 'black',
-        x: 250
+        x: gElCanvas.width / 2
     }
 
     if (gMeme.lines.length === 0) {
@@ -75,12 +70,13 @@ function addLine() {
     } else if (gMeme.lines.length === 1) {
         line.y = gElCanvas.height - 25
     } else {
-        line.y = gElCanvas.height / 2 + 20
+        line.y = gElCanvas.height / 2 + 20 
     }
     gMeme.lines.push(line)
     changeLine()
 
 }
+
 //changes the selected line (idx)
 function changeLine() {
     var newlineIdx = gMeme.selectedLineIdx + 1
@@ -114,4 +110,11 @@ function setFontSize(diff) {
 //sets a new font align
 function setFontAlign(align) {
     gMeme.lines[gMeme.selectedLineIdx].align = align
+}
+
+//downloads the meme
+function downloadMeme(elLink) {
+    const data = gElCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'my-meme.jpg';
 }
