@@ -30,6 +30,7 @@ function renderMeme() {
             gCtx.textAlign = line.align;
             gCtx.fillText(line.txt, line.x, line.y);
             gCtx.strokeText(line.txt, line.x, line.y);
+            onSetFocus (line)
         })
     }
 }
@@ -56,13 +57,21 @@ function onSetListeners() {
     const elDeleteLine = document.querySelector('.delete-btn');
     elDeleteLine.addEventListener('click', onDeleteLine);
 
+    //add line
+    const elAddLine = document.querySelector('.add-line-btn');
+
+    //switch lines
+    const elSwitchLine = document.querySelector('.switch-btn');
+    elSwitchLine.addEventListener('click', onSwitchLine);
 }
 
+//Changes the text of the selected line
 function onUpdateText(ev) {
     setLineTxt(ev.target.value)
     renderMeme()
 }
 
+//Changes the text color of the selected line
 function onColorChange(ev) {
     const color = ev.target.value
     setLineColor(color);
@@ -70,6 +79,7 @@ function onColorChange(ev) {
     renderMeme()
 }
 
+//Changes the font of the selected line
 function onFontChange(ev) {
     const font = ev.target.value
     setLineFont(font);
@@ -77,6 +87,7 @@ function onFontChange(ev) {
     renderMeme()
 }
 
+//Changes the stroke color of the selected line
 function onStrokeColorChange(ev) {
     const color = ev.target.value
     setTextStrokeColor(color);
@@ -84,14 +95,45 @@ function onStrokeColorChange(ev) {
     renderMeme()
 }
 
+//Adds a new line
 function onAddLine() {
     document.querySelector('.text-line').value = ''
     addLine()
     renderMeme()
 }
-
+//Deletes the selected line
 function onDeleteLine() {
     deleteLine()
     renderMeme()
 }
 
+//Moves the selected line up or down
+function onPosChange(diff) {
+    setLinePos(diff)
+    renderMeme()
+}
+
+//Switches between lines (for editing)
+function onSwitchLine() {
+    switchLine()
+    renderMeme()
+}
+
+//Sets a rectengle on the selected line
+function onSetFocus(line) {
+if (gMeme.selectedLineIdx === line.id && line.txt) {
+    gCtx.strokeRect(3, line.y-line.size+5, gElCanvas.width-6, line.size);
+    }   
+}   
+
+//Changes the font size of the selected line
+function onsetFontSize(diff) {
+    setFontSize(diff)
+    renderMeme()
+}
+
+//Changes the font align of the selected line
+function onSetFontAlign(align) {
+    setFontAlign(align)
+    renderMeme()
+}
