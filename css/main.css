@@ -58,12 +58,21 @@ button {
     font-size: 1em;
 }
 
-
+.editor-container{
+    margin: 20px;
+}
 @media (min-width:780px){
     html {
         /* font-size: 14px; */
     }
 }
+
+@media (max-width:980px){
+    .editor-container {
+        flex-direction: column;
+    }
+}
+    
 
 @media (min-width:1060px){
     html {
@@ -134,16 +143,23 @@ background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
     margin-left: auto;
     margin-right: auto;
 }
+.canvas-container{
+    border-radius: 20px;
+    /* /* width: 35vw; */
+    /* width: 50%; */
+    margin: 0 20px 0 25%;
+     
+    /* border: #585858 5px solid; */
+   
 
+}
 .main-canvas {
-    margin-left: 25vw;
-    margin-top: 10vh;
+     
+    border-radius: 20px;
+   
 }
 
 
-.meme-main-editor h1 {
-    text-align: center;
-}
 
 .gallery-area{
     /* Style for "Rectangle" */
@@ -177,7 +193,11 @@ margin-top: 15px;
 } */
 
 
-
+.tool-box{
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 10vh;
+}
 
 .move-up-btn{
     width: 3em;

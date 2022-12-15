@@ -7,9 +7,6 @@ function onMemeInit() {
     gElCanvas = document.querySelector('#canvas')
     gCtx = gElCanvas.getContext('2d')
 
-    //TODO: resizeCanvas()
-    // window.addEventListener('resize', () => {
-    // resizeCanvas()
     renderMeme()
     onSetListeners()
 }
@@ -18,25 +15,26 @@ function onMemeInit() {
 function renderMeme() {
     var img = new Image()
     var currMeme = getMeme()
+    resizeCanvas()
 
     img.src = currMeme.selectedImgUrl
-    img.onload = () => {
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        currMeme.lines.forEach(line => {
-            gCtx.lineWidth = '2';
-            gCtx.strokeStyle = line.strokeColor;
-            gCtx.fillStyle = line.color;
-            gCtx.font = `${line.size}px ${line.font}`;
-            gCtx.textAlign = line.align;
-            gCtx.fillText(line.txt, line.x, line.y);
-            gCtx.strokeText(line.txt, line.x, line.y);
-            onSetFocus (line)
-        })
-    }
+    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    currMeme.lines.forEach(line => {
+        gCtx.lineWidth = '2';
+        gCtx.strokeStyle = line.strokeColor;
+        gCtx.fillStyle = line.color;
+        gCtx.font = `${line.size}px ${line.font}`;
+        gCtx.textAlign = line.align;
+        gCtx.fillText(line.txt, line.x, line.y);
+        gCtx.strokeText(line.txt, line.x, line.y);
+        onSetFocus(line)
+
+    })
 }
 
 function onSetListeners() {
-    
+    //resize canvas
+    window.addEventListener('resize', renderMeme)
     //add text line
     const input = document.querySelector('.text-line');
     input.addEventListener('input', onUpdateText);
@@ -63,7 +61,16 @@ function onSetListeners() {
     //switch lines
     const elSwitchLine = document.querySelector('.switch-btn');
     elSwitchLine.addEventListener('click', onSwitchLine);
+
+    // canvas click to change focus
+    gElCanvas.addEventListener('click', onCanvasClicked)
 }
+
+function resizeCanvas() {
+    gCtx.canvas.width = document.documentElement.clientWidth * 0.3
+    gCtx.canvas.height = document.documentElement.clientWidth * 0.3
+}
+
 
 //Changes the text of the selected line
 function onUpdateText(ev) {
@@ -121,10 +128,10 @@ function onSwitchLine() {
 
 //Sets a rectengle on the selected line
 function onSetFocus(line) {
-if (gMeme.selectedLineIdx === line.id && line.txt) {
-    gCtx.strokeRect(3, line.y-line.size+5, gElCanvas.width-6, line.size);
-    }   
-}   
+    if (gMeme.selectedLineIdx === line.id && line.txt) {
+        gCtx.strokeRect(3, line.y - line.size + 5, gElCanvas.width - 6, line.size);
+    }
+}
 
 //Changes the font size of the selected line
 function onsetFontSize(diff) {
@@ -136,4 +143,19 @@ function onsetFontSize(diff) {
 function onSetFontAlign(align) {
     setFontAlign(align)
     renderMeme()
+}
+
+//
+function onCanvasClicked(ev) {
+    ev.stopPropagation()
+    const { offsetX, offsetY } = ev
+    const clickedLine = gMeme.lines.find(line => {
+        return (
+            offsetX >= line.x && offsetX <= line.x + gElCanvas.width &&
+            offsetY >= line.y - line.size && offsetY <= line.y
+        )
+    })
+    if (clickedLine) {
+        onSetFocus(clickedLine)
+    }
 }
