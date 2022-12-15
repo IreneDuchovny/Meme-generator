@@ -70,8 +70,11 @@ function onSetListeners() {
 }
 
 function resizeCanvas() {
-    gCtx.canvas.width = document.documentElement.clientWidth * 0.3
-    gCtx.canvas.height = document.documentElement.clientWidth * 0.3
+    // gCtx.canvas.width = document.documentElement.clientWidth * 0.3
+    // gCtx.canvas.height = document.documentElement.clientWidth * 0.3
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.offsetWidth 
+    gElCanvas.height =elContainer.offsetWidth 
     renderMeme()
 }
 

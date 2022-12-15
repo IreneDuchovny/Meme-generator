@@ -11,6 +11,7 @@
 /* @import '/css/basic/layout.css'; */
 
 @import 'cmpts/header.css';
+@import 'cmpts/scroll-bar.css';
 
 
 
@@ -64,22 +65,31 @@ button {
     margin: 20px;
 }
 
-@media (min-width:780px) {
-    html {
-        /* font-size: 14px; */
-    }
-}
+
+
 
 @media (max-width:980px) {
     .editor-container {
         flex-direction: column;
     }
+    .canvas-container {
+        width: 99vw;
+    }
 }
 
 
-@media (min-width:1060px) {
-    html {
-        /* font-size: 16px; */
+@media (max-width:1200px) {
+    .grid-container {
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
+      
+        grid-gap: 20px;
+    }
+}
+@media (max-width:500px) {
+    .grid-container {
+        grid-template-columns: repeat(1, minmax(150px, 1fr));
+      
+      
     }
 }
 
@@ -91,18 +101,20 @@ button {
     /* background-color: aquamarine; */
     width: 100%;
 
+
 }
 
 .header-container {
     display: flex;
-    margin: 0 auto;
+    margin: 15px auto;
     /* Style for "Rectangle" */
     /* /* width: 1257px; */
     /* height: 100px; */
     border-radius: 55px;
-    width: 100%;
+    width: 99vw;
     /* background-color: #5970c1; */
     background-image: linear-gradient(-86deg, #33be6d 0%, #0c98b9 100%);
+    height: 10vh;
 }
 
 .nav-list li {
@@ -140,6 +152,7 @@ button {
     height: 100vh;
     margin-left: auto;
     margin-right: auto;
+
 }
 
 .canvas-container {
@@ -150,28 +163,38 @@ button {
     /* border: #585858 5px solid; */
 }
 
-.main-canvas, .tool-box {
+.main-canvas,
+.tool-box {
     border-radius: 20px;
 }
 
 .gallery-area {
     /* Style for "Rectangle" */
-    width: 1243px;
+    width: 95vw;
     border-radius: 10px;
     background-color: var(--clr2);
     margin-top: 15px;
+    height: 85vh;
 }
 
 /* gallery grid */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
     grid-auto-rows: auto;
     grid-auto-flow: dense;
     gap: 10px;
     padding: 60px;
-    width: auto;
-    /* margin: 0 auto; */
+    width: 98vw;
+    margin: 0 auto;
+    overflow-y: scroll;
+    /* height: 100vh; */
+}
+
+@media (min-width:1200px) {
+    .grid-container {
+        grid-template-columns: repeat(4, minmax(200px, 1fr));
+    }
 }
 
 .grid-container img {
