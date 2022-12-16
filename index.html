@@ -72,17 +72,17 @@
   <!-- meme editor page -->
   <!-- Main meme section -->
   <section class="meme-main-editor hide">
-    <!-- <h1>Main meme section</h1> -->
-
-    <div class="editor-container flex">
-      <div class="canvas-container">
+   
+<!-- <div class="meme-main-grid"> -->
+    <div class="editor-container flex center">
+      <div class="canvas-container item1">
         <canvas class="main-canvas" id="canvas" width="500" height="500"></canvas>
       </div>
       <!--TOOL BOX section  -->
       <div class="tool-box flex">
         <input type="text" class="text-line" placeholder="Enter text">
 
-        <div class="text-line-btns">
+        <div class="text-line-btns flex space-around">
 
           <button class="move-up-btn fa fa-arrow-up" title="move up" onclick="onPosChange(-10)"></button>
           <button class="move-down-btn fa fa-arrow-down" title="move down" onclick="onPosChange(10)"></button>
@@ -91,8 +91,8 @@
           <button class="add-line-btn" title="add text" onclick="onAddLine()">➕</button>
           <button class="delete-btn" title="delete line">🗑️</button>
         </div>
-        <div class="main-formating">
-          <div class="second-line-btns">
+        <div class="main-formating ">
+          <div class="second-line-btns flex space-around ">
             <button class="bigger-font-btn" title="enlarge font size" onclick="onsetFontSize(2)">➕</button>
             <button class="smaller-font-btn" title="enlarge font size" onclick="onsetFontSize(-2)">➖</button>
             <button class="align-left-btn" onclick="onSetFontAlign('right')">👈</button>
@@ -101,21 +101,21 @@
             <button class="align-center-btn fa fa-align-justify" onclick="onSetFontAlign('center')"></button>
             <button class="align-right-btn" onclick="onSetFontAlign('left')">👉</button>
           </div>
-          <div>
-            <select class="choose-font-btn">
-              <option>Impact</option>
-              <option>Arial</option>
-              <option>Cursive</option>
-              <option>Shrikhand</option>
-            </select>
+          <div class="third-line-btns flex space-around ">
+          
             
             <button class="stroke-picker fa fa-font" onclick="onstrokeClick()"></button>
             <input id="stroke-id" value="#000000" class="stroke-color-input" title="stroke" type="color">
            
             <button class="color-picker fa fa-paint-brush" onclick="onColorClick()"></button>
             <input id="color-id" value="#ffffff" class="font-color-input" title="font color" type="color" >
-            <br>
-      
+            
+            <select class="choose-font-btn">
+              <option>Impact</option>
+              <option>Arial</option>
+              <option>Cursive</option>
+              <option>Shrikhand</option>
+            </select>
 
           </div>
         </div>
@@ -128,6 +128,7 @@
       </div>
 
     </div>
+  <!-- </div> -->
 
   </section>
 

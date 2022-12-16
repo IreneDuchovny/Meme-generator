@@ -10,18 +10,13 @@
     overflow-x: none;
     height: 100%;
     }
-
     
 }
 
 @media (max-width:980px) {
-    .editor-container {
-        flex-direction: column;
-    }
+   
 
-    .canvas-container {
-        width: 99vw;
-    }
+  
     .gallery-area{
         /* height: 100vh; */
     }
@@ -34,6 +29,10 @@
     .gallery-area{
         height: 85vh;
     }
+    .tool-box{
+        width: 30vw;
+        margin-left: 20px;
+    }
 }
 
 @media (max-width:1200px) {
@@ -43,6 +42,16 @@
     }
     .search-bar-input{
         width: 100vw;
+    }
+    .editor-container {
+        flex-direction: column;
+    }
+    .canvas-container {
+        width: 97vw;
+    }
+
+    .tool-box {
+        width: 97vw;
     }
 }
 
