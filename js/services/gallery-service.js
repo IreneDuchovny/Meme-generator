@@ -20,17 +20,25 @@ var gImgs = [
     { id: 17, url: 'img/17.jpg', keywords: ['politics', 'scary'] },
     { id: 18, url: 'img/18.jpg', keywords: ['all over', 'toys'] },
 
-
 ]
 
+
+
+
+//gets images for gallery
 function getImgs() {
     return gImgs
 }
 
-function setImg(imgId) {
-    gMeme.selectedImgId = imgId
-    gMeme.selectedImgUrl = `img/${imgId}.jpg`
-    console.log(' gMeme.selectedImgUrl',  gMeme.selectedImgUrl)
-    console.log('imgId',imgId )
+
+
+//search by keywords
+function searchByKeywords(keyword) {
+    var imgs = getImgs()
+    var imgsByKeywords = imgs.filter(function (img) {
+        return img.keywords.includes(keyword.toLowerCase())
+    })
+    return imgsByKeywords
 }
+
 

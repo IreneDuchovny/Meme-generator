@@ -9,6 +9,22 @@ var gMeme = {
     ]
 }
 
+const gStickers = [
+    { id: "cactus", url: 'img/stickers/cactus.png' },
+    { id: "cool", url: 'img/stickers/cool.png' },
+    { id: "crown", url: 'img/stickers/crown.png' },
+    { id: "donut", url: 'img/stickers/donut.png' },
+    // {id:"drunk", url:'img/stickers/drunk.png'},
+    // {id:"hearts", url:'img/stickers/hearts.png'},
+    // {id:"mouse", url:'img/stickers/mouse.png'},
+    // {id:"pizza", url:'img/stickers/pizza.png'},
+    // {id:"silly", url:'img/stickers/silly.png'},
+    // {id:"sweet", url:'img/stickers/sweet.png'},
+    // {id:"unicorn", url:'img/stickers/unicorn.png'},
+]
+
+
+
 //returns the meme
 function getMeme() {
     return gMeme
@@ -37,7 +53,7 @@ function setTextStrokeColor(color) {
 
 //deletes a line
 function deleteLine() {
-    console.log('gMeme.selectedLineIdx',gMeme.selectedLineIdx )
+    console.log('gMeme.selectedLineIdx', gMeme.selectedLineIdx)
     var delLine = gMeme.lines
     delLine.splice(gMeme.selectedLineIdx, 1)
     if (gMeme.selectedLineIdx === 0 && gMeme.lines.length === 0) {
@@ -45,9 +61,27 @@ function deleteLine() {
         gMeme.selectedLineIdx = 0
         return
     }
-    if(gMeme.lines.length > 0) gMeme.selectedLineIdx--
+
+    if (gMeme.lines.length > 0) {
+        gMeme.selectedLineIdx--
+        switchLine()
+    }
 }
 
+
+
+//sets image in meme area
+function setImg(imgId) {
+    gMeme = {
+        selectedImgId: imgId,
+        selectedImgUrl: `img/${imgId}.jpg`,
+        selectedLineIdx: 0,
+    
+        lines: [
+        ]
+    }
+    
+}
 // function createLines() {
 // addLine()
 // addLine()
@@ -70,7 +104,7 @@ function addLine() {
     } else if (gMeme.lines.length === 1) {
         line.y = gElCanvas.height - 25
     } else {
-        line.y = gElCanvas.height / 2 + 20 
+        line.y = gElCanvas.height / 2 + 20
     }
     gMeme.lines.push(line)
     changeLine()
@@ -117,4 +151,21 @@ function downloadMeme(elLink) {
     const data = gElCanvas.toDataURL();
     elLink.href = data;
     elLink.download = 'my-meme.jpg';
+}
+
+
+
+//gets stickers for gallery
+function getStickers() {
+    return gStickers
+}
+
+//gets sticker by id
+function getStickerById(stickerId) {
+    var stickers = getStickers()
+    console.log('stickers', stickers)
+    var sticker = stickers.find(function (sticker) {
+        return sticker.id === stickerId
+    })
+    return sticker
 }

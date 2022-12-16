@@ -36,8 +36,37 @@
   <!-- Main gallery section -->
   <section class="main-gallery">
 
-    <!-- <h1>Main gallery section </h1> -->
-    <div class="gallery-area grid-container"></div>
+    <div class="gallery-area ">
+      <div class="search-bar flex">
+        <input type="text" list="keywords" class="search-bar-input" placeholder="search"
+          oninput="onSearchByKeywords(this.value)">
+        <datalist id="keywords">
+          <option value="funny">
+          <option value="baby">
+          <option value="cat">
+          <option value="politics">
+          <option value="puppies">
+          <option value="musical">
+          <option value="kiss">
+          <option value="you">
+          <option value="wine">
+          <option value="metrix">
+          <option value="zero">
+          <option value="all over">
+          <option value="toys">
+          <option value="scary">
+          <option value="movies">
+          <option value="men">
+          <option value="success">
+          <option value="focus">
+          <option value="sneaky">
+          <option value="smile">
+          <option value="cute">
+        </datalist>
+      </div>
+      <div class="grid-container"> </div>
+    </div>
+
   </section>
 
   <!-- meme editor page -->
@@ -89,9 +118,15 @@
           </div>
         </div>
         <div class="download-section"><a href="#" onclick="onDownloadMeme(this)"> download</a></div>
+        <div class="stickers-container flex space-between">
+
+
+        </div>
 
       </div>
+
     </div>
+
   </section>
 
   <script src="js/main.js"></script>
