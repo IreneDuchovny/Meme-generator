@@ -73,7 +73,7 @@ function onSetListeners() {
     elFont.addEventListener('click', onFontChange);
 
     //stroke color
-    const elColorStroke = document.querySelector('.stroke-color-btn');
+    const elColorStroke = document.querySelector('.stroke-color-input');
     elColorStroke.addEventListener('input', onStrokeColorChange);
 
     //delete line
@@ -89,6 +89,16 @@ function onSetListeners() {
 
     // canvas click to change focus
     gElCanvas.addEventListener('click', onCanvasClicked)
+}
+
+function onColorClick()
+{
+    document.querySelector('.font-color-input').click()
+}
+
+function onstrokeClick()
+{
+    document.querySelector('.stroke-color-input').click()
 }
 
 function  adjustCanvas(imgWidth, imgHeight) {
@@ -178,7 +188,7 @@ function onSetFocus(line) {
         gCtx.strokeRect(3, line.y - line.size + 5, gElCanvas.width - 6, line.size);
         document.querySelector('.text-line').value = line.txt
         document.querySelector('.font-color-input').value = line.color
-        document.querySelector('.stroke-color-btn').value = line.strokeColor
+        document.querySelector('.stroke-color-input').value = line.strokeColor
         document.querySelector('.choose-font-btn').value = line.font
 
     }
