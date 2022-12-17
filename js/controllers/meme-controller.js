@@ -10,8 +10,9 @@ function onMemeInit() {
     addLine()
     addLine()
     gMeme.selectedLineIdx = 0
-    // resizeCanvas()
+     
     renderMeme() 
+    resizeCanvas()
     onSetListeners()
     onGetStickers()
     
@@ -24,7 +25,7 @@ function renderMeme(clearFocus) {
     var img = new Image()
     var currMeme = getMeme()
     img.src = currMeme.selectedImgUrl
-    if (img.width != img.height) adjustCanvas(img.width, img.height)
+    // if (img.width != img.height) adjustCanvas(img.width, img.height)
     
     // centerLines() 
     //img.onload = () => {
@@ -103,26 +104,26 @@ function onstrokeClick()
     document.querySelector('.stroke-color-input').click()
 }
 
-function  adjustCanvas(imgWidth, imgHeight) {
-    const elContainer = document.querySelector('.canvas-container')
-    const containerWidth = elContainer.offsetWidth
-    const containerHeight = elContainer.offsetHeight
-    if (imgWidth > imgHeight) {
-        gElCanvas.width = containerWidth
-        gElCanvas.height = (imgHeight * containerWidth) / imgWidth
-    } else {
-        gElCanvas.height = containerHeight
-        gElCanvas.width = (imgWidth * containerHeight) / imgHeight
-    }
+// function  adjustCanvas(imgWidth, imgHeight) {
+//     const elContainer = document.querySelector('.canvas-container')
+//     const containerWidth = elContainer.offsetWidth
+//     const containerHeight = elContainer.offsetHeight
+//     if (imgWidth > imgHeight) {
+//         gElCanvas.width = containerWidth
+//         gElCanvas.height = (imgHeight * containerWidth) / imgWidth
+//     } else {
+//         gElCanvas.height = containerHeight
+//         gElCanvas.width = (imgWidth * containerHeight) / imgHeight
+//     }
     
-}
+// }
 
 function resizeCanvas() {
     // gCtx.canvas.width = document.documentElement.clientWidth * 0.3
     // gCtx.canvas.height = document.documentElement.clientWidth * 0.3
     const elContainer = document.querySelector('.canvas-container')
-    gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.offsetWidth
+    gCtx.canvas.width = elContainer.offsetWidth
+    gCtx.canvas.height = elContainer.offsetWidth
     console.log('elContainer.offsetWidth',elContainer.offsetWidth )
 
     renderMeme()
