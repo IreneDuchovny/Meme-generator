@@ -22,15 +22,10 @@ var gImgs = [
 
 ]
 
-
-
-
 //gets images for gallery
 function getImgs() {
     return gImgs
 }
-
-
 
 //search by keywords
 function searchByKeywords(keyword) {
@@ -41,4 +36,10 @@ function searchByKeywords(keyword) {
     return imgsByKeywords
 }
 
+function getSavedMemes(){
+    var memeNames= loadFromStorage('memeNames')
+    return memeNames.map(function(memeName){
+        return loadFromStorage(memeName)
+    })
+    }
 

@@ -18,7 +18,7 @@ function onMemeInit() {
 
 
 //renders currState of lines
-function renderMeme() {
+function renderMeme(clearFocus) {
     var img = new Image()
     var currMeme = getMeme()
     img.src = currMeme.selectedImgUrl
@@ -35,7 +35,7 @@ function renderMeme() {
             gCtx.textAlign = line.align;
             gCtx.fillText(line.txt, line.x, line.y);
             gCtx.strokeText(line.txt, line.x, line.y);
-            onSetFocus(line)
+            if(!clearFocus) onSetFocus(line)
 
    })
 //}
@@ -195,6 +195,13 @@ function onSetFocus(line) {
 
 }
 
+function onUnfocus() {
+    gMeme.lines.forEach(line => {
+    gCtx.clearRect(3, line.y - line.size + 5, gElCanvas.width - 6, line.size);
+    })
+    renderMeme()
+}
+
 //Changes the font size of the selected line
 function onsetFontSize(diff) {
     setFontSize(diff)
@@ -227,6 +234,8 @@ function onCanvasClicked(ev) {
 
 //downloads the meme
 function onDownloadMeme(link) {
+   // onUnfocus()
+   renderMeme(true);
     downloadMeme(link)
 
 }
@@ -244,4 +253,25 @@ function onStickerSelect(id) {
     var currSticker = new Image()
     currSticker.src = sticker.url
     gCtx.drawImage(currSticker, gElCanvas.width/2,  gElCanvas.height/2, 100, 100)
+}
+
+function onSaveMeme() {
+    renderMeme(true)
+    saveMeme()
+    onMemeNav()
+    // console.log('saved')
+}
+
+
+//load meme from storage
+function onLoadMeme(id) {
+    var elGallery = document.querySelector('.main-gallery')
+    elGallery.classList.add('hide')
+    var elEditor = document.querySelector('.meme-main-editor')
+    elEditor.classList.remove('hide')
+    var elSaveMemes= document.querySelector('.saved-memes')
+    elSaveMemes.classList.add('hide')
+    onMemeInit()
+    loadMeme(id)
+    renderMeme()
 }

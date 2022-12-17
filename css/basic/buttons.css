@@ -12,8 +12,6 @@
     cursor: pointer;
 }
 
-
-
 .move-up-btn,
 .move-down-btn,
 .switch-btn,
@@ -34,7 +32,9 @@
     margin: 5px;
 }
 
-
+.switch-btn img{
+    width: 20px;
+}
 
 .move-up-btn:hover,.move-down-btn:hover 
 .switch-btn:hover,

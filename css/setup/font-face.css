@@ -19,8 +19,9 @@
     src: url("/fonts/Raleway/Raleway-Regular.ttf");
     src: url("/fonts/Raleway/Raleway-Thin.ttf");
 }
+ 
 
-/* @font-face {
+@font-face {
     font-family: fa;
     src: url("/fonts/fa/fa-brands-400.ttf");
-} */
+}

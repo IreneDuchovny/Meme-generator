@@ -8,6 +8,7 @@
 @import 'basic/buttons.css';
 @import 'basic/icons.css';
 @import 'basic/helpers.css';
+@import 'basic/grids.css';
 /* @import '/css/basic/layout.css'; */
 
 @import 'cmpts/header.css';
@@ -32,19 +33,14 @@ html {
     line-height: 1.13; */
 
 }
-
+h2 a{
+    text-decoration: none;
+   margin: 20px;
+}
 img {
     width: 100%;
 }
 
-/* h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 0 0 1em;
-} */
 
 
 body {
@@ -77,16 +73,6 @@ button {
     margin-bottom: 10px;
 }
 
-/* .meme-main-grid{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 10px;
-    margin: 10px;
-}
-.item1{
-    grid-column: 1;
-   
-} */
 
 /* end base.css */
 .main-gallery{
@@ -172,31 +158,10 @@ button {
     margin-top: 15px;
     width: 98vw;
 }
+/* /////////////////////////////////////////////////////// */
 
-/* gallery grid */
-.grid-container {
-    display: grid;
 
-    grid-auto-rows: auto;
-    grid-auto-flow: dense;
-    gap: 10px;
-    padding: 60px;
-
-    margin: 0 auto;
-
-    /* height: 100vh; */
-}
-
-@media (min-width:1200px) {
-    .grid-container {
-        grid-template-columns: repeat(4, minmax(200px, 1fr));
-    }
-}
-
-.grid-container img {
-    /* border: 5px solid rgb(0, 0, 0); */
-    border-radius: 30px;
-}
+/* ////////////////////////////////////////////////////// */
 
 .font-color-input,.stroke-color-input{
   opacity: 0;
@@ -214,6 +179,10 @@ button {
     
 }
 
+h1{
+    margin: 50px;
+
+}
 /* input text line */
 .text-line {
     width: 100%;

@@ -9,6 +9,9 @@ var gMeme = {
     ]
 }
 
+var gSavedNames = []
+
+
 const gStickers = [
     { id: "cactus", url: 'img/stickers/cactus.png' },
     { id: "cool", url: 'img/stickers/cool.png' },
@@ -68,8 +71,6 @@ function deleteLine() {
     }
 }
 
-
-
 //sets image in meme area
 function setImg(imgId) {
     gMeme = {
@@ -82,10 +83,7 @@ function setImg(imgId) {
     }
     
 }
-// function createLines() {
-// addLine()
-// addLine()
-// }
+
 //Adds a new line to the meme(top,bottom and meddle)
 function addLine() {
     var line = {
@@ -153,8 +151,6 @@ function downloadMeme(elLink) {
     elLink.download = 'my-meme.jpg';
 }
 
-
-
 //gets stickers for gallery
 function getStickers() {
     return gStickers
@@ -168,4 +164,33 @@ function getStickerById(stickerId) {
         return sticker.id === stickerId
     })
     return sticker
+}
+
+
+//save meme to local storage
+function saveMeme() {
+    var memePrompt = prompt("Please enter a name to save")
+    const data = gElCanvas.toDataURL();
+    gMeme.data =data;
+    gMeme.id=memePrompt;
+    saveToStorage(memePrompt, gMeme)
+    gSavedNames.push(memePrompt)
+    saveToStorage('memeNames', gSavedNames)
+
+}
+
+//load memes from local storage
+function loadMeme(id) {
+    gMeme = loadFromStorage(id)
+
+}
+//saves the meme name from the user
+function saveMemeNames() {
+    saveToStorage(prompt("Please enter a name to save"), gMeme)
+}
+
+
+//loades and shows the saved memes in the webpage
+function loadSavedNames() {
+    return gSavedNames = loadFromStorage('memeNames')
 }

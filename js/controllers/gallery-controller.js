@@ -1,7 +1,8 @@
 'use strict'
 
 function onGalleryInit() {
-   // onMemeInit()
+    // onMemeInit()
+    loadSavedNames()
     renderGallery()
 }
 
@@ -14,17 +15,41 @@ function renderGallery() {
     // document.querySelector('.gallery-area').innerHTML = searchBarHtml + strHtmls.join('')
     document.querySelector('.grid-container').innerHTML = strHtmls.join('')
 }
-
+//hides irelevant pages from meme editor
 function onImgSelect(imgId) {
     var elGallery = document.querySelector('.main-gallery')
     elGallery.classList.add('hide')
     var elEditor = document.querySelector('.meme-main-editor')
     elEditor.classList.remove('hide')
+    var elSaveMemes = document.querySelector('.saved-memes')
+    elSaveMemes.classList.add('hide')
     setImg(imgId)
-    renderGallery()
+    //renderGallery()
     onMemeInit()
 }
 
+function onMemeNav() {
+    var elGallery = document.querySelector('.main-gallery')
+    elGallery.classList.add('hide')
+    var elEditor = document.querySelector('.meme-main-editor')
+    elEditor.classList.add('hide')
+    var elSaveMemes = document.querySelector('.saved-memes')
+    elSaveMemes.classList.remove('hide')
+    loadSavedNames()
+    renderSavedMemes()
+
+}
+
+function renderSavedMemes() {
+    var savedMemes = getSavedMemes()
+    console.log('savedMemes', savedMemes)
+    var strHtmls = savedMemes.map(function (meme) {
+        console.log('meme.id', meme.id)
+        return `<img src="${meme.data}"  onclick="onLoadMeme('${meme.id}')">`
+
+    })
+    document.querySelector('.saved-memes-grid').innerHTML = strHtmls.join('')
+}
 
 function onGalleryNav() {
     var elGallery = document.querySelector('.main-gallery')
@@ -34,7 +59,6 @@ function onGalleryNav() {
     renderGallery()
     document.querySelector('.search-bar-input').value = ''
 }
-
 
 function onSearchByKeywords(keyword) {
     if (keyword === '') return renderGallery()
