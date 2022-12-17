@@ -6,45 +6,35 @@ let gCtx
 function onMemeInit() {
     gElCanvas = document.querySelector('#canvas')
     gCtx = gElCanvas.getContext('2d')
-    
- 
-    
     resizeCanvas()
     addLine()
     addLine()
     gMeme.selectedLineIdx = 0
     renderMeme() 
-  
     onSetListeners()
     onGetStickers()
-    
 }
 
-
-//renders currState of lines
+//Renders currState of lines
 function renderMeme(clearFocus) {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
     var img = new Image()
     var currMeme = getMeme()
     img.src = currMeme.selectedImgUrl
     // if (img.width != img.height) adjustCanvas(img.width, img.height)
-    
-    
-    //img.onload = () => {
+
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         currMeme.lines.forEach(line => {
-            gCtx.lineWidth = '2';
-            gCtx.strokeStyle = line.strokeColor;
-            gCtx.fillStyle = line.color;
-            gCtx.font = `${line.size}px ${line.font}`;
-            gCtx.textAlign = line.align;
-            gCtx.fillText(line.txt, line.x, line.y);
-            gCtx.strokeText(line.txt, line.x, line.y);
+            gCtx.lineWidth = '2'
+            gCtx.strokeStyle = line.strokeColor
+            gCtx.fillStyle = line.color
+            gCtx.font = `${line.size}px ${line.font}`
+            gCtx.textAlign = line.align
+            gCtx.fillText(line.txt, line.x, line.y)
+            gCtx.strokeText(line.txt, line.x, line.y)
             if(!clearFocus) onSetFocus(line)
 
    })
-//}
-
     // var stickers = getStickers()
     // stickers.forEach(sticker => {
     //     var img = new Image()
@@ -57,42 +47,40 @@ function centerLines() {
     var currMeme = getMeme()
     currMeme.lines.forEach(line => {
         line.x = gElCanvas.width / 2
-
     })
-
 }   
 
 function onSetListeners() {
     //resize canvas
     window.addEventListener('resize', resizeCanvas)
     //add text line
-    const input = document.querySelector('.text-line');
-    input.addEventListener('input', onUpdateText);
+    const input = document.querySelector('.text-line')
+    input.addEventListener('input', onUpdateText)
 
     //choose font color
-    const elColor = document.querySelector('.font-color-input');
-    elColor.addEventListener('input', onColorChange);
+    const elColor = document.querySelector('.font-color-input')
+    elColor.addEventListener('input', onColorChange)
 
     //choose font family
-    const elFont = document.querySelector('.choose-font-btn');
-    elFont.addEventListener('click', onFontChange);
+    const elFont = document.querySelector('.choose-font-btn')
+    elFont.addEventListener('click', onFontChange)
 
     //stroke color
-    const elColorStroke = document.querySelector('.stroke-color-input');
-    elColorStroke.addEventListener('input', onStrokeColorChange);
+    const elColorStroke = document.querySelector('.stroke-color-input')
+    elColorStroke.addEventListener('input', onStrokeColorChange)
 
     //delete line
-    const elDeleteLine = document.querySelector('.delete-btn');
-    elDeleteLine.addEventListener('click', onDeleteLine);
+    const elDeleteLine = document.querySelector('.delete-btn')
+    elDeleteLine.addEventListener('click', onDeleteLine)
 
     //add line
-    const elAddLine = document.querySelector('.add-line-btn');
+    const elAddLine = document.querySelector('.add-line-btn')
 
     //switch lines
-    const elSwitchLine = document.querySelector('.switch-btn');
-    elSwitchLine.addEventListener('click', onSwitchLine);
+    const elSwitchLine = document.querySelector('.switch-btn')
+    elSwitchLine.addEventListener('click', onSwitchLine)
 
-    // canvas click to change focus
+    //canvas click to change focus
     gElCanvas.addEventListener('click', onCanvasClicked)
 
     //mouse down to drag
@@ -138,14 +126,11 @@ function onstrokeClick()
     
 // }
 
+//resizes canvas
 function resizeCanvas() {
-    // gCtx.canvas.width = document.documentElement.clientWidth * 0.3
-    // gCtx.canvas.height = document.documentElement.clientWidth * 0.3
     const elContainer = document.querySelector('.canvas-container')
     gCtx.canvas.width = elContainer.offsetWidth
     gCtx.canvas.height = elContainer.offsetWidth
-    console.log('elContainer.offsetWidth',elContainer.offsetWidth )
-
     renderMeme()
 }
 
@@ -158,24 +143,21 @@ function onUpdateText(ev) {
 //Changes the text color of the selected line
 function onColorChange(ev) {
     const color = ev.target.value
-    setLineColor(color);
-    console.log('color', ev)
+    setLineColor(color)
     renderMeme()
 }
 
 //Changes the font of the selected line
 function onFontChange(ev) {
     const font = ev.target.value
-    setLineFont(font);
-    console.log('font', ev)
+    setLineFont(font)
     renderMeme()
 }
 
 //Changes the stroke color of the selected line
 function onStrokeColorChange(ev) {
     const color = ev.target.value
-    setTextStrokeColor(color);
-    console.log('color', ev)
+    setTextStrokeColor(color)
     renderMeme()
 }
 
@@ -183,7 +165,6 @@ function onStrokeColorChange(ev) {
 function onAddLine() {
     document.querySelector('.text-line').value = ''
     addLine()
-
     renderMeme()
 }
 //Deletes the selected line
@@ -207,23 +188,14 @@ function onSwitchLine() {
 //Sets a rectengle on the selected line
 function onSetFocus(line) {
     if (gMeme.selectedLineIdx === line.id && line.txt) {
-        gCtx.lineWidth = 1;
-        gCtx.strokeStyle = "gray";
-        gCtx.strokeRect(3, line.y - line.size + 5, gElCanvas.width - 6, line.size);
+        gCtx.lineWidth = 1
+        gCtx.strokeStyle = "gray"
+        gCtx.strokeRect(3, line.y - line.size + 5, gElCanvas.width - 6, line.size)
         document.querySelector('.text-line').value = line.txt
         document.querySelector('.font-color-input').value = line.color
         document.querySelector('.stroke-color-input').value = line.strokeColor
         document.querySelector('.choose-font-btn').value = line.font
-
     }
-
-}
-
-function onUnfocus() {
-    gMeme.lines.forEach(line => {
-    gCtx.clearRect(3, line.y - line.size + 5, gElCanvas.width - 6, line.size);
-    })
-    renderMeme()
 }
 
 //Changes the font size of the selected line
@@ -257,10 +229,8 @@ function onCanvasClicked(ev) {
 
 //downloads the meme
 function onDownloadMeme(link) {
-   // onUnfocus()
    renderMeme(true)
     downloadMeme(link)
-
 }
 
 function onGetStickers() {
@@ -278,13 +248,12 @@ function onStickerSelect(id) {
     gCtx.drawImage(currSticker, gElCanvas.width/2,  gElCanvas.height/2, 100, 100)
 }
 
+//saves meme to storage
 function onSaveMeme() {
     renderMeme(true)
     saveMeme()
     onMemeNav()
-    // console.log('saved')
 }
-
 
 //load meme from storage
 function onLoadMeme(id) {
@@ -299,18 +268,14 @@ function onLoadMeme(id) {
     renderMeme()
 }
 
-
-
+// share meme on facebook
 function onUploadImg() {
     renderMeme(true)
-    const imgDataUrl = gElCanvas.toDataURL('image/jpeg') // Gets the canvas content as an image format
-    // A function to be called if request succeeds
+    const imgDataUrl = gElCanvas.toDataURL('image/jpeg') 
     function onSuccess(uploadedImgUrl) {
-        // Encode the instance of certain characters in the url
         const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
     }
-    // Send the image to the server
     doUploadImg(imgDataUrl, onSuccess)
 }
 
@@ -319,7 +284,6 @@ function onDown(ev) {
     const pos = getEvPos(ev)
     if (!getClickedLine(pos.x, pos.y)) return
     setLineDrag(true)
-    //Save the pos we start from
     gStartPos = pos
     document.body.style.cursor = 'grabbing'
 }
@@ -328,14 +292,11 @@ function onMove(ev) {
     const { isDrag, selectedLineIdx } = getMeme()
     if (!isDrag) return
     const pos = getEvPos(ev)
-    // Calc the delta , the diff we moved
     const dx = pos.x - gStartPos.x
     const dy = pos.y - gStartPos.y
     moveLine(dx, dy, selectedLineIdx)
-    // Save the last pos , we remember where we`ve been and move accordingly
     gStartPos = pos
     document.body.style.cursor = 'grabbing'
-    // The canvas is render again after every move
     renderMeme()
 }
 

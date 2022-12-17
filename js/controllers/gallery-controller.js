@@ -25,6 +25,7 @@ function onImgSelect(imgId) {
     onMemeInit()
 }
 
+//Hides gallery, editor and shows saved memes
 function onMemeNav() {
     var elGallery = document.querySelector('.main-gallery')
     elGallery.classList.add('hide')
@@ -40,23 +41,17 @@ function onMemeNav() {
 
 function renderSavedMemes() {
     var savedMemes = getSavedMemes()
-    console.log('savedMemes', savedMemes)
     var strHtmls = savedMemes.map(function (meme) {
-        console.log('meme.id', meme.id)
         return `<img src="${meme.data}"  onclick="onLoadMeme('${meme.id}')">`
-
     })
-    console.log('strHtmls', strHtmls)
-    if (!strHtmls){
-        document.querySelector('.saved-memes-grid').innerHTML= `<a>There are no saved memes</a>`
-
-    }else
-    {
+    if (!strHtmls) {
+        document.querySelector('.saved-memes-grid').innerHTML = `<a>There are no saved memes</a>`
+    } else {
         document.querySelector('.saved-memes-grid').innerHTML = strHtmls.join('')
     }
-    
 }
 
+//Hides editor, meme page and shows gallery
 function onGalleryNav() {
     var elGallery = document.querySelector('.main-gallery')
     elGallery.classList.remove('hide')
@@ -68,14 +63,13 @@ function onGalleryNav() {
     document.querySelector('.search-bar-input').value = ''
 }
 
+//searches for images by keywords
 function onSearchByKeywords(keyword) {
     if (keyword === '') return renderGallery()
     var imgs = searchByKeywords(keyword)
-
     var strHtmls = imgs.map(function (img) {
         return `<img src="${img.url}"  onclick="onImgSelect(${img.id})">`
     })
- 
     document.querySelector('.grid-container').innerHTML = strHtmls.join('')
 }
 

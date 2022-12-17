@@ -36,6 +36,7 @@ function searchByKeywords(keyword) {
     return imgsByKeywords
 }
 
+//loads saved memes from local storage
 function getSavedMemes(){
     var memeNames= loadFromStorage('memeNames')  || []
     var retMemes = memeNames.map(function(memeName){
@@ -48,13 +49,11 @@ function getSavedMemes(){
 function uploadImg(elForm, ev) {
     ev.preventDefault()
     document.getElementById('imgData').value = gElCanvas.toDataURL("image/jpeg")
-    // A function to be called if request succeeds
     function onSuccess(uploadedImgUrl) {
         uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
-        console.log(uploadedImgUrl)
         document.querySelector('.share-container').innerHTML = `<a href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" target="_blank">Share on Facebook</a>`
     }
-    doUploadImg(elForm, onSuccess);
+    doUploadImg(elForm, onSuccess)
 }
 
 

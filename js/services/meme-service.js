@@ -27,8 +27,6 @@ const gStickers = [
     // {id:"unicorn", url:'img/stickers/unicorn.png'},
 ]
 
-
-
 //returns the meme
 function getMeme() {
     return gMeme
@@ -37,13 +35,11 @@ function getMeme() {
 //updates a line's text (for the selected/edited line)
 function setLineTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
-
 }
 
 //updates a line's color (for the selected/edited line)
 function setLineColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color
-
 }
 
 //updates a line's font (for the selected/edited line)
@@ -57,7 +53,6 @@ function setTextStrokeColor(color) {
 
 //deletes a line
 function deleteLine() {
-    console.log('gMeme.selectedLineIdx', gMeme.selectedLineIdx)
     var delLine = gMeme.lines
     delLine.splice(gMeme.selectedLineIdx, 1)
     if (gMeme.selectedLineIdx === 0 && gMeme.lines.length === 0) {
@@ -78,11 +73,9 @@ function setImg(imgId) {
         selectedImgId: imgId,
         selectedImgUrl: `img/${imgId}.jpg`,
         selectedLineIdx: 0,
-    
         lines: [
         ]
     }
-    
 }
 
 //Adds a new line to the meme(top,bottom and meddle)
@@ -107,7 +100,6 @@ function addLine() {
     }
     gMeme.lines.push(line)
     changeLine()
-
 }
 
 //changes the selected line (idx)
@@ -120,7 +112,6 @@ function changeLine() {
 function setLinePos(diff) {
     if (gMeme.lines.length === 0 || gMeme.lines[gMeme.selectedLineIdx].y === 30) return
     gMeme.lines[gMeme.selectedLineIdx].y += diff
-
 }
 
 //switches between lines
@@ -137,7 +128,6 @@ function switchLine() {
 function setFontSize(diff) {
     if (gMeme.lines[gMeme.selectedLineIdx].size + diff < 16) return
     gMeme.lines[gMeme.selectedLineIdx].size += diff
-    console.log('font size', gMeme.lines[gMeme.selectedLineIdx].size)
 }
 
 //sets a new font align
@@ -147,9 +137,9 @@ function setFontAlign(align) {
 
 //downloads the meme
 function downloadMeme(elLink) {
-    const data = gElCanvas.toDataURL();
-    elLink.href = data;
-    elLink.download = 'my-meme.jpg';
+    const data = gElCanvas.toDataURL()
+    elLink.href = data
+    elLink.download = 'my-meme.jpg'
 }
 
 //gets stickers for gallery
@@ -160,24 +150,21 @@ function getStickers() {
 //gets sticker by id
 function getStickerById(stickerId) {
     var stickers = getStickers()
-    console.log('stickers', stickers)
     var sticker = stickers.find(function (sticker) {
         return sticker.id === stickerId
     })
     return sticker
 }
 
-
 //save meme to local storage
 function saveMeme() {
     var memePrompt = prompt("Please enter a name to save")
-    const data = gElCanvas.toDataURL();
-    gMeme.data =data;
-    gMeme.id=memePrompt;
+    const data = gElCanvas.toDataURL()
+    gMeme.data = data
+    gMeme.id = memePrompt
     saveToStorage(memePrompt, gMeme)
     gSavedNames.push(memePrompt)
     saveToStorage('memeNames', gSavedNames)
-
 }
 
 //load memes from local storage
@@ -190,28 +177,24 @@ function saveMemeNames() {
     saveToStorage(prompt("Please enter a name to save"), gMeme)
 }
 
-
 //loades and shows the saved memes in the webpage
 function loadSavedNames() {
     return gSavedNames = loadFromStorage('memeNames') || []
 }
 
+//uploades the meme to the server (for facebook share)
 function doUploadImg(imgDataUrl, onSuccess) {
-    // Pack the image for delivery
     const formData = new FormData()
     formData.append('img', imgDataUrl)
-    console.log('imgDataUrl', imgDataUrl)
-    console.log('formData:', formData)
-    // Send a post req with the image to the server
     fetch('//ca-upload.com/here/upload.php', { method: 'POST', body: formData })
         .then(res => res.text())
         .then(url => {
-            console.log('url:', url)
             onSuccess(url)
         })
 }
 
-function getClickedLine( offsetX, offsetY) {
+//gets the location of the line
+function getClickedLine(offsetX, offsetY) {
     const clickedLine = gMeme.lines.find(line => {
         return (
             offsetX >= 3 && offsetX <= line.x + gElCanvas.width &&
@@ -221,37 +204,31 @@ function getClickedLine( offsetX, offsetY) {
     return clickedLine
 }
 
+//sets the line to be dragged
 function setLineDrag(isDrag) {
     gMeme.isDrag = isDrag
 }
-
-
-
+//sets a new position for the moved line
 function moveLine(dx, dy, idx) {
     gMeme.lines[idx].x += dx
     gMeme.lines[idx].y += dy
-
 }
 
-
+// creates a position object for the mouse/touch events
 function getEvPos(ev) {
-    // Gets the offset pos , the default pos
     let pos = {
         x: ev.offsetX,
         y: ev.offsetY,
     }
-    // Check if its a touch ev
     if (TOUCH_EVS.includes(ev.type)) {
-        console.log('ev:', ev)
-        //soo we will not trigger the mouse ev
+
         ev.preventDefault()
-        //Gets the first touch point
-        ev = ev.changedTouches[0]
-        //Calc the right pos according to the touch screen
+       ev = ev.changedTouches[0]
         pos = {
             x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
             y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
         }
     }
-    return pos
+    return pos  
 }
+
