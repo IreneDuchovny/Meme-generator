@@ -104,7 +104,14 @@ function onSetListeners() {
     //mouse move to drag
     gElCanvas.addEventListener('mousemove', onMove)
 
+    //touch move to drag
+    gElCanvas.addEventListener('touchmove', onMove)
 
+    //touch start to drag
+    gElCanvas.addEventListener('touchstart', onDown)
+
+    //touch end to stop drag
+    gElCanvas.addEventListener('touchend', onUp)
 }
 
 function onColorClick()

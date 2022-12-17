@@ -1,22 +1,18 @@
 'use strict'
 
 function onGalleryInit() {
-    // onMemeInit()
     loadSavedNames()
     renderGallery()
 }
 
 function renderGallery() {
     var imgs = getImgs()
-    // var searchBarHtml = `<input type="text" class="search-bar" placeholder="search">`
     var strHtmls = imgs.map(function (img) {
         return `<img src="${img.url}"  onclick="onImgSelect(${img.id})">`
     })
-
-   
-    // document.querySelector('.gallery-area').innerHTML = searchBarHtml + strHtmls.join('')
     document.querySelector('.grid-container').innerHTML = strHtmls.join('')
 }
+
 //hides irelevant pages from meme editor
 function onImgSelect(imgId) {
     var elGallery = document.querySelector('.main-gallery')
@@ -26,7 +22,6 @@ function onImgSelect(imgId) {
     var elSaveMemes = document.querySelector('.saved-memes')
     elSaveMemes.classList.add('hide')
     setImg(imgId)
-    //renderGallery()
     onMemeInit()
 }
 

@@ -55,7 +55,6 @@ h2 a{
     
 }
 
-
 /* nav */
 .main-header {
     width: 100%;
@@ -94,14 +93,12 @@ h2 a{
     width: 100px;
     height: 100px;
     margin: 10px 0px 0px 10px;
-
 }
 
 .main-layout {
     height: 100vh;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 .canvas-container {
@@ -125,7 +122,6 @@ h2 a{
   opacity: 0;
  width:0;
  height: 0;
-
 }
 
 /* tool box */
