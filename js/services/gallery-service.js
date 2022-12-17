@@ -37,9 +37,10 @@ function searchByKeywords(keyword) {
 }
 
 function getSavedMemes(){
-    var memeNames= loadFromStorage('memeNames')
-    return memeNames.map(function(memeName){
+    var memeNames= loadFromStorage('memeNames')  || []
+    var retMemes = memeNames.map(function(memeName){
         return loadFromStorage(memeName)
     })
+    return retMemes
     }
 

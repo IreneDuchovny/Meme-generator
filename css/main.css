@@ -48,7 +48,7 @@ body {
 }
 
 a {
-    color: black;
+    color: var(--clr4);
 }
 
 button {
@@ -223,7 +223,7 @@ h1{
 
 
 .download-section a {
-    color: antiquewhite;
+    color: var(--clr4);
     cursor: pointer;
 }
 

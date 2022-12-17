@@ -192,5 +192,5 @@ function saveMemeNames() {
 
 //loades and shows the saved memes in the webpage
 function loadSavedNames() {
-    return gSavedNames = loadFromStorage('memeNames')
+    return gSavedNames = loadFromStorage('memeNames') || []
 }
