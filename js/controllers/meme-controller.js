@@ -7,12 +7,14 @@ function onMemeInit() {
     gElCanvas = document.querySelector('#canvas')
     gCtx = gElCanvas.getContext('2d')
     
+ 
+    
+    resizeCanvas()
     addLine()
     addLine()
     gMeme.selectedLineIdx = 0
-     
     renderMeme() 
-    resizeCanvas()
+  
     onSetListeners()
     onGetStickers()
     
@@ -27,7 +29,7 @@ function renderMeme(clearFocus) {
     img.src = currMeme.selectedImgUrl
     // if (img.width != img.height) adjustCanvas(img.width, img.height)
     
-    // centerLines() 
+    
     //img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         currMeme.lines.forEach(line => {
@@ -43,12 +45,12 @@ function renderMeme(clearFocus) {
    })
 //}
 
-//     var stickers = getStickers()
-//     stickers.forEach(sticker => {
-//         var img = new Image()
-//         img.src = sticker.url
-//         gCtx.drawImage(img, 100, 100, 100, 100)
-//     })
+    // var stickers = getStickers()
+    // stickers.forEach(sticker => {
+    //     var img = new Image()
+    //     img.src = sticker.url
+    //     gCtx.drawImage(img, gElCanvas.width/2,  gElCanvas.height/2, 100, 100)
+    // })
 }
 
 function centerLines() {
@@ -92,6 +94,17 @@ function onSetListeners() {
 
     // canvas click to change focus
     gElCanvas.addEventListener('click', onCanvasClicked)
+
+    //mouse down to drag
+    gElCanvas.addEventListener('mousedown', onDown)
+
+    //mouse up to stop drag
+    gElCanvas.addEventListener('mouseup', onUp)
+
+    //mouse move to drag
+    gElCanvas.addEventListener('mousemove', onMove)
+
+
 }
 
 function onColorClick()
@@ -222,24 +235,23 @@ function onSetFontAlign(align) {
 function onCanvasClicked(ev) {
     ev.stopPropagation()
     const { offsetX, offsetY } = ev
-    const clickedLine = gMeme.lines.find(line => {
-        return (
-            offsetX >= 3 && offsetX <= line.x + gElCanvas.width &&
-            offsetY >= line.y - line.size && offsetY <= line.y
-        )
-    })
+    const clickedLine =getClickedLine(offsetX, offsetY)
 
     if (clickedLine) {
         gMeme.selectedLineIdx = clickedLine.id
         onSetFocus(clickedLine)
+        document.body.style.cursor = 'grabbing'
         renderMeme()
+    }
+    else {
+        renderMeme(true)
     }
 }
 
 //downloads the meme
 function onDownloadMeme(link) {
    // onUnfocus()
-   renderMeme(true);
+   renderMeme(true)
     downloadMeme(link)
 
 }
@@ -278,4 +290,49 @@ function onLoadMeme(id) {
     onMemeInit()
     loadMeme(id)
     renderMeme()
+}
+
+
+
+function onUploadImg() {
+    renderMeme(true)
+    const imgDataUrl = gElCanvas.toDataURL('image/jpeg') // Gets the canvas content as an image format
+    // A function to be called if request succeeds
+    function onSuccess(uploadedImgUrl) {
+        // Encode the instance of certain characters in the url
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
+    }
+    // Send the image to the server
+    doUploadImg(imgDataUrl, onSuccess)
+}
+
+//Drag and drop functions
+function onDown(ev) {
+    const pos = getEvPos(ev)
+    if (!getClickedLine(pos.x, pos.y)) return
+    setLineDrag(true)
+    //Save the pos we start from
+    gStartPos = pos
+    document.body.style.cursor = 'grabbing'
+}
+
+function onMove(ev) {
+    const { isDrag, selectedLineIdx } = getMeme()
+    if (!isDrag) return
+    const pos = getEvPos(ev)
+    // Calc the delta , the diff we moved
+    const dx = pos.x - gStartPos.x
+    const dy = pos.y - gStartPos.y
+    moveLine(dx, dy, selectedLineIdx)
+    // Save the last pos , we remember where we`ve been and move accordingly
+    gStartPos = pos
+    document.body.style.cursor = 'grabbing'
+    // The canvas is render again after every move
+    renderMeme()
+}
+
+function onUp() {
+    setLineDrag(false)
+    document.body.style.cursor = 'default'
 }

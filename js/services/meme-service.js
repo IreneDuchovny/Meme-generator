@@ -4,13 +4,14 @@ var gMeme = {
     selectedImgId: 5,
     selectedImgUrl: 'img/5.jpg',
     selectedLineIdx: 0,
-
+    isDrag: false,
     lines: [
     ]
 }
 
 var gSavedNames = []
-
+let gStartPos
+const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 const gStickers = [
     { id: "cactus", url: 'img/stickers/cactus.png' },
@@ -193,4 +194,64 @@ function saveMemeNames() {
 //loades and shows the saved memes in the webpage
 function loadSavedNames() {
     return gSavedNames = loadFromStorage('memeNames') || []
+}
+
+function doUploadImg(imgDataUrl, onSuccess) {
+    // Pack the image for delivery
+    const formData = new FormData()
+    formData.append('img', imgDataUrl)
+    console.log('imgDataUrl', imgDataUrl)
+    console.log('formData:', formData)
+    // Send a post req with the image to the server
+    fetch('//ca-upload.com/here/upload.php', { method: 'POST', body: formData })
+        .then(res => res.text())
+        .then(url => {
+            console.log('url:', url)
+            onSuccess(url)
+        })
+}
+
+function getClickedLine( offsetX, offsetY) {
+    const clickedLine = gMeme.lines.find(line => {
+        return (
+            offsetX >= 3 && offsetX <= line.x + gElCanvas.width &&
+            offsetY >= line.y - line.size && offsetY <= line.y
+        )
+    })
+    return clickedLine
+}
+
+function setLineDrag(isDrag) {
+    gMeme.isDrag = isDrag
+}
+
+
+
+function moveLine(dx, dy, idx) {
+    gMeme.lines[idx].x += dx
+    gMeme.lines[idx].y += dy
+
+}
+
+
+function getEvPos(ev) {
+    // Gets the offset pos , the default pos
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+    // Check if its a touch ev
+    if (TOUCH_EVS.includes(ev.type)) {
+        console.log('ev:', ev)
+        //soo we will not trigger the mouse ev
+        ev.preventDefault()
+        //Gets the first touch point
+        ev = ev.changedTouches[0]
+        //Calc the right pos according to the touch screen
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+        }
+    }
+    return pos
 }

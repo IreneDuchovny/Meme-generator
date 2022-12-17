@@ -37,6 +37,7 @@ function onMemeNav() {
     elEditor.classList.add('hide')
     var elSaveMemes = document.querySelector('.saved-memes')
     elSaveMemes.classList.remove('hide')
+
     loadSavedNames()
     renderSavedMemes()
 
@@ -66,6 +67,8 @@ function onGalleryNav() {
     elGallery.classList.remove('hide')
     var elEditor = document.querySelector('.meme-main-editor')
     elEditor.classList.add('hide')
+    var elSaveMemes = document.querySelector('.saved-memes')
+    elSaveMemes.classList.add('hide')
     renderGallery()
     document.querySelector('.search-bar-input').value = ''
 }

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/main.css">
-  <!-- <link rel="stylesheet" href="img/fa/css/font-awesome.min.css"> -->
+  <link rel="icon" type="image/x-icon" href="img/meme-favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -18,19 +18,16 @@
   <header class="main-header flex">
     <div class="header-container flex align-center space-between">
       <h2><a href="#header" onclick="onGalleryNav();toggleMenu()">Meme Generator</a></h2>
-      <!-- <img src="img/logo-meme.png" alt="logo" class="logo"> -->
-      <!-- <h1>Awesome Meme Generator</h1> -->
+      <!-- nav bar -->
       <nav class="main-nav flex">
-
         <ul class="nav-list flex clean-list ">
           <li><a href="#gallery" onclick="onGalleryNav();toggleMenu()">Gallery</a></li>
-          <li><a href="#meme" onclick="onMemeNav();toggleMenu()">Meme</a></li>
+          <li><a href="#meme" onclick="onMemeNav();toggleMenu()">Memes</a></li>
           <li><a href="https://ireneduchovny.github.io/Projects-gallery/" target="_blank">About</a></li>
         </ul>
       </nav>
       <!-- burger -->
       <button class="menu-toggle-btn" onclick="toggleMenu()">☰</button>
-        
     </div>
   </header>
 
@@ -65,79 +62,72 @@
           <option value="cute">
         </datalist>
       </div>
+      <!-- gallery grid -->
       <div class="grid-container"> </div>
     </div>
   </section>
 
   <!-- saved meme section -->
-<section class="saved-memes hide">
+  <section class="saved-memes hide">
     <div class="saved-memes-area">
       <div class="saved-memes-grid">
       </div>
     </div>
-    </section>
-  <!-- meme editor page -->
+  </section>
+
   <!-- Main meme section -->
   <section class="meme-main-editor hide">
-   
-<!-- <div class="meme-main-grid"> -->
     <div class="editor-container flex center">
+      <!-- canvas section -->
       <div class="canvas-container">
         <canvas class="main-canvas" id="canvas" width="500" height="500"></canvas>
       </div>
       <!--TOOL BOX section  -->
       <div class="tool-box flex">
+        <!-- meme text area -->
         <input type="text" class="text-line" placeholder="Enter text">
-
+        <!-- first line edit buttons -->
         <div class="text-line-btns flex space-around">
-        
           <button class="move-up-btn fa fa-arrow-up" title="move up" onclick="onPosChange(-10)"></button>
           <button class="move-down-btn fa fa-arrow-down" title="move down" onclick="onPosChange(10)"></button>
-          <button class="switch-btn"><img src="img/icons/exchange.png"></button>
-          <!-- <input type="text" class="add-line-btn" placeholder="Enter text"> -->
-          <button class="add-line-btn" title="add text" onclick="onAddLine()">➕</button>
+          <button class="switch-btn" title="switch"><img src="img/icons/exchange.png"></button>
+          <button class="add-line-btn fa fa-plus" title="add text line" onclick="onAddLine()"></button>
           <button class="delete-btn" title="delete line">🗑️</button>
         </div>
-        <div class="main-formating ">
+        <!-- second line edit buttons -->
+        <div class="main-formating">
           <div class="second-line-btns flex space-around ">
-            <button class="bigger-font-btn" title="enlarge font size" onclick="onsetFontSize(2)">➕</button>
-            <button class="smaller-font-btn" title="enlarge font size" onclick="onsetFontSize(-2)">➖</button>
-            <button class="align-left-btn" onclick="onSetFontAlign('right')">👈</button>
-
-
-            <button class="align-center-btn fa fa-align-justify" onclick="onSetFontAlign('center')"></button>
-            <button class="align-right-btn" onclick="onSetFontAlign('left')">👉</button>
+            <button class="bigger-font-btn fa fa-plus" title="big font size" onclick="onsetFontSize(2)"></button>
+            <button class="smaller-font-btn fa fa-minus" title="small font size" onclick="onsetFontSize(-2)"></button>
+            <button class="align-left-btn fa fa-align-left" title="align left" onclick="onSetFontAlign('right')"></button>
+            <button class="align-center-btn fa fa-align-justify" title="align center" onclick="onSetFontAlign('center')"></button>
+            <button class="align-right-btn fa fa-align-right" title="align right" onclick="onSetFontAlign('left')"></button>
           </div>
+          <!-- third line edit buttons -->
           <div class="third-line-btns flex space-around ">
-          
-            
             <button class="stroke-picker fa fa-font" onclick="onstrokeClick()"></button>
             <input id="stroke-id" value="#000000" class="stroke-color-input" title="stroke" type="color">
-           
             <button class="color-picker fa fa-paint-brush" onclick="onColorClick()"></button>
-            <input id="color-id" value="#ffffff" class="font-color-input" title="font color" type="color" >
-            
+            <input id="color-id" value="#ffffff" class="font-color-input" title="font color" type="color">
             <select class="choose-font-btn">
               <option>Impact</option>
               <option>Arial</option>
               <option>Cursive</option>
               <option>Shrikhand</option>
             </select>
-
           </div>
         </div>
+        <!-- download and save and share meme section -->
         <div class="save-area flex space-between">
-          <div class="download-section"><a href="#" onclick="onDownloadMeme(this)"> download</a></div>
-          <div class="save-meme-btn"><a href="#" onclick="onSaveMeme(this)">save</a></div>
+          <div class="download-section" title="download meme"><a href="#" onclick="onDownloadMeme(this)"> download</a></div>
+          <div class="share-btn" title="share meme"><a href="#" onclick="onUploadImg(this)">share</a></div>
+          <div class="save-meme-btn" title="save to my memes"><a href="#" onclick="onSaveMeme(this)">save</a></div>
         </div>
+        <!-- stickers section -->
         <div class="stickers-container flex space-between">
         </div>
-       
       </div>
-
     </div>
-  <!-- </div> -->
-
   </section>
 
   <script src="js/main.js"></script>

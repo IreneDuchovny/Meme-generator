@@ -44,3 +44,17 @@ function getSavedMemes(){
     return retMemes
     }
 
+// upload image from user
+function uploadImg(elForm, ev) {
+    ev.preventDefault()
+    document.getElementById('imgData').value = gElCanvas.toDataURL("image/jpeg")
+    // A function to be called if request succeeds
+    function onSuccess(uploadedImgUrl) {
+        uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        console.log(uploadedImgUrl)
+        document.querySelector('.share-container').innerHTML = `<a href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" target="_blank">Share on Facebook</a>`
+    }
+    doUploadImg(elForm, onSuccess);
+}
+
+
