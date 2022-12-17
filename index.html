@@ -14,23 +14,23 @@
 </head>
 
 <body class="main-layout" onload="onGalleryInit()">
-
+  <div class="main-screen" onclick="toggleMenu()"></div>
   <header class="main-header flex">
     <div class="header-container flex align-center space-between">
-      <h2><a href="#header" onclick="onGalleryNav()">Meme Generator</a></h2>
+      <h2><a href="#header" onclick="onGalleryNav();toggleMenu()">Meme Generator</a></h2>
       <!-- <img src="img/logo-meme.png" alt="logo" class="logo"> -->
       <!-- <h1>Awesome Meme Generator</h1> -->
       <nav class="main-nav flex">
 
         <ul class="nav-list flex clean-list ">
-          <li><a href="#gallery" onclick="onGalleryNav()">Gallery</a></li>
-          <li><a href="#meme" onclick="onMemeNav()">Meme</a></li>
+          <li><a href="#gallery" onclick="onGalleryNav();toggleMenu()">Gallery</a></li>
+          <li><a href="#meme" onclick="onMemeNav();toggleMenu()">Meme</a></li>
           <li><a href="https://ireneduchovny.github.io/Projects-gallery/" target="_blank">About</a></li>
         </ul>
       </nav>
       <!-- burger -->
-      <!-- <button class="menu-toggle-btn" onclick="toggleMenu()">☰</button>
-         -->
+      <button class="menu-toggle-btn" onclick="toggleMenu()">☰</button>
+        
     </div>
   </header>
 

@@ -120,9 +120,7 @@ button {
     color: var(--clr3);
 }
 
-.nav-list li:last-child {
-    margin-right: 14em;
-}
+
 
 .header-container img {
     width: 100px;
