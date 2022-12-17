@@ -10,6 +10,7 @@ function onMemeInit() {
     addLine()
     addLine()
     gMeme.selectedLineIdx = 0
+    // resizeCanvas()
     renderMeme() 
     onSetListeners()
     onGetStickers()
@@ -19,10 +20,11 @@ function onMemeInit() {
 
 //renders currState of lines
 function renderMeme(clearFocus) {
+    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
     var img = new Image()
     var currMeme = getMeme()
     img.src = currMeme.selectedImgUrl
-    // if (img.width != img.height) adjustCanvas(img.width, img.height)
+    if (img.width != img.height) adjustCanvas(img.width, img.height)
     
     // centerLines() 
     //img.onload = () => {
@@ -121,6 +123,7 @@ function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetWidth
+    console.log('elContainer.offsetWidth',elContainer.offsetWidth )
 
     renderMeme()
 }

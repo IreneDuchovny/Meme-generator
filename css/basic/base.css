@@ -9,10 +9,9 @@
     }
     .search-bar-input{
         width: 100vw;
+        color: var(--clr5);
     }
-    /* .saved-memes-grid {
-        grid-template-columns: repeat(1, minmax(150px, 1fr));
-    } */
+   
     .gallery-area{
         overflow-y: none;
     overflow-x: none;
@@ -25,6 +24,14 @@
         color: white;
         cursor: pointer;
     }
+    .editor-container {
+        flex-direction: column;
+    }
+    .canvas-container, .tool-box {
+        width: 90vw;
+        align-self: center;
+        margin-bottom: 20px;
+    }
 }
 
 
@@ -32,10 +39,9 @@
 .header-container {
         z-index: 1;
     }
-    .gallery-area{
-        /* height: 100vh; */
-    }
+    
     .menu-toggle-btn {
+        margin-right: 20px;
         background-color: inherit;
         border: none;
         font-size: 2rem;
@@ -118,22 +124,27 @@
     } */
     .search-bar-input{
         width: 100vw;
+        color: var(--clr5);
     }
     .editor-container {
         flex-direction: column;
     }
-    .canvas-container {
-        width: 97vw;
+    .canvas-container, .tool-box {
+        width: 90vw;
+        align-self: center;
+        margin-bottom: 20px;
     }
 
-    .tool-box {
-        width: 97vw;
-    }
+    /* .tool-box {
+        width: 90vw;
+        align-self: center;
+    } */
 }
 
 @media (min-width:1200px){
     .search-bar-input{
         width: 40vw;
+        color: var(--clr5);
     }
     .gallery-area{
         height: 85vh;

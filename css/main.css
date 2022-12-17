@@ -65,12 +65,19 @@ button {
 .search-bar-input {
     height: 57px;
     margin: 25px;
-    /* box-shadow: 1px 5px 0 #bbc4d1, inset 0 5px 0 #ffffff; */
     border-radius: 28px;
     background-color: var(--clr1);
     font-size: 20px;
     text-align: center;
     margin-bottom: 10px;
+}
+
+.save-area{
+    margin: 7px 7px;
+}
+
+.save-area a{
+    text-decoration: none;
 }
 
 
@@ -81,10 +88,7 @@ button {
 
 /* nav */
 .main-header {
-    /* background-color: aquamarine; */
     width: 100%;
-
-
 }
 
 .header-container {
