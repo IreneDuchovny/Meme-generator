@@ -44,7 +44,7 @@
 .smaller-font-btn:hover,
 .align-left-btn:hover,
 .align-center-btn:hover,
-.align-right-btn:hover, .color-picker:hover, .stroke-picker:hover{ 
+.align-right-btn:hover, .color-picker:hover, .stroke-picker:hover { 
     background-image: linear-gradient(-86deg, #279153 0%, #076479 100%);
  } 
 
@@ -68,3 +68,17 @@
     height: 50px;
     cursor: pointer;
 } */
+
+.btn-upload{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    height: 57px;
+    margin: 25px;
+    padding: 20px;
+    font-style: bold;
+    border-radius: 40px;
+    border: 1px solid var(--clr4);
+    background-color: var(--clr4);
+    color: var(--clr3);
+}

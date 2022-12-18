@@ -32,29 +32,38 @@ function getMeme() {
     return gMeme
 }
 
+//get selected meme
+function getSelectedLine() {
+    return gMeme.lines[gMeme.selectedLineIdx]
+}
 //updates a line's text (for the selected/edited line)
 function setLineTxt(txt) {
-    gMeme.lines[gMeme.selectedLineIdx].txt = txt
+    getSelectedLine().txt = txt
+    // gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
 //updates a line's color (for the selected/edited line)
 function setLineColor(color) {
-    gMeme.lines[gMeme.selectedLineIdx].color = color
+    getSelectedLine().color = color
+    // gMeme.lines[gMeme.selectedLineIdx].color = color
 }
 
 //updates a line's font (for the selected/edited line)
 function setLineFont(font) {
-    gMeme.lines[gMeme.selectedLineIdx].font = font
+    getSelectedLine().font = font
+    // gMeme.lines[gMeme.selectedLineIdx].font = font
 }
 //updates text stroke color (for the selected/edited text)
 function setTextStrokeColor(color) {
-    gMeme.lines[gMeme.selectedLineIdx].strokeColor = color
+    getSelectedLine().strokeColor = color
+    // gMeme.lines[gMeme.selectedLineIdx].strokeColor = color
 }
 
 //deletes a line
 function deleteLine() {
-    var delLine = gMeme.lines
-    delLine.splice(gMeme.selectedLineIdx, 1)
+    // var delLine = gMeme.lines
+    // delLine.splice(gMeme.selectedLineIdx, 1)
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
     if (gMeme.selectedLineIdx === 0 && gMeme.lines.length === 0) {
         addLine()
         gMeme.selectedLineIdx = 0
@@ -67,7 +76,7 @@ function deleteLine() {
     }
 }
 
-//sets image in meme area
+//sets image in meme editor
 function setImg(imgId) {
     gMeme = {
         selectedImgId: imgId,
@@ -78,7 +87,20 @@ function setImg(imgId) {
     }
 }
 
+function setImgByUrl(imgUrl){
+gMeme.selectedImgUrl= imgUrl
+
+    gMeme.selectedImgUrl= imgUrl,
+    gMeme.selectedLineIdx= 0,
+    gMeme.lines= [
+    ]
+
+}
+
+
+
 //Adds a new line to the meme(top,bottom and meddle)
+//todo: text baseLine (top,bottom,meddle)
 function addLine() {
     var line = {
         id: gMeme.lines.length,
@@ -104,19 +126,20 @@ function addLine() {
 
 //changes the selected line (idx)
 function changeLine() {
-    var newlineIdx = gMeme.selectedLineIdx + 1
-    gMeme.selectedLineIdx = newlineIdx
+    // var newlineIdx = gMeme.selectedLineIdx + 1
+    // gMeme.selectedLineIdx = newlineIdx
+    gMeme.selectedLineIdx++
 }
 
 //updates a line's position (for the selected/edited line)
 function setLinePos(diff) {
-    if (gMeme.lines.length === 0 || gMeme.lines[gMeme.selectedLineIdx].y === 30) return
-    gMeme.lines[gMeme.selectedLineIdx].y += diff
+    if (gMeme.lines.length === 0 ) return
+    getSelectedLine().y += diff
 }
 
 //switches between lines
 function switchLine() {
-    if (gMeme.lines.length === 0) return
+    // if (gMeme.lines.length === 0) return
     if (gMeme.selectedLineIdx === gMeme.lines.length - 1) {
         gMeme.selectedLineIdx = 0
     } else {
@@ -126,13 +149,13 @@ function switchLine() {
 
 //sets a new font size
 function setFontSize(diff) {
-    if (gMeme.lines[gMeme.selectedLineIdx].size + diff < 16) return
-    gMeme.lines[gMeme.selectedLineIdx].size += diff
+    if (getSelectedLine().size + diff < 16) return
+    getSelectedLine().size += diff
 }
 
 //sets a new font align
 function setFontAlign(align) {
-    gMeme.lines[gMeme.selectedLineIdx].align = align
+    getSelectedLine().align = align
 }
 
 //downloads the meme
@@ -182,7 +205,7 @@ function loadSavedNames() {
     return gSavedNames = loadFromStorage('memeNames') || []
 }
 
-//uploades the meme to the server (for facebook share)
+//uploades the meme to the server (to share on facebook)
 function doUploadImg(imgDataUrl, onSuccess) {
     const formData = new FormData()
     formData.append('img', imgDataUrl)
@@ -192,6 +215,18 @@ function doUploadImg(imgDataUrl, onSuccess) {
             onSuccess(url)
         })
 }
+
+// upload image (image) from user (to share on facebook)
+function uploadImg(elForm, ev) {
+    ev.preventDefault()
+    document.getElementById('imgData').value = gElCanvas.toDataURL("image/jpeg")
+    function onSuccess(uploadedImgUrl) {
+        uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        document.querySelector('.share-container').innerHTML = `<a href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" target="_blank">Share on Facebook</a>`
+    }
+    doUploadImg(elForm, onSuccess)
+}
+
 
 //gets the location of the line
 function getClickedLine(offsetX, offsetY) {

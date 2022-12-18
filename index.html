@@ -61,10 +61,17 @@
           <option value="smile">
           <option value="cute">
         </datalist>
+        <button class="btn-upload flex space-between upload" onclick="addImgToGallery(this)">Upload</button>
+        <input  class="btn-choose-file hide" type="file" id="file"  accept="image/*" onchange="onImgInput(event)" >
       </div>
+
+      
+
       <!-- gallery grid -->
       <div class="grid-container"> </div>
+     
     </div>
+    
   </section>
 
   <!-- saved meme section -->
@@ -129,7 +136,8 @@
       </div>
     </div>
   </section>
-
+    <!-- <footer class="flex"> ©developed by IRENE DUCHOVNY</footer>-->
+  
   <script src="js/main.js"></script>
   <script src="js/services/gallery-service.js"></script>
   <script src="js/services/meme-service.js"></script>
@@ -138,5 +146,6 @@
   <script src="js/storage/utils.js"></script>
 
 </body>
+
 
 </html>

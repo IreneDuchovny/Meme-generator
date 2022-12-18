@@ -29,31 +29,24 @@ function getImgs() {
 
 //search by keywords
 function searchByKeywords(keyword) {
-    var imgs = getImgs()
-    var imgsByKeywords = imgs.filter(function (img) {
+    // var imgs = getImgs()
+    // var imgsByKeywords = imgs.filter(function (img) {
+    var imgsByKeywords = gImgs.filter(function (img) {
         return img.keywords.includes(keyword.toLowerCase())
     })
     return imgsByKeywords
 }
 
 //loads saved memes from local storage
-function getSavedMemes(){
-    var memeNames= loadFromStorage('memeNames')  || []
-    var retMemes = memeNames.map(function(memeName){
+function getSavedMemes() {
+    var memeNames = loadFromStorage('memeNames') || []
+    var retMemes = memeNames.map(function (memeName) {
         return loadFromStorage(memeName)
     })
     return retMemes
-    }
-
-// upload image from user
-function uploadImg(elForm, ev) {
-    ev.preventDefault()
-    document.getElementById('imgData').value = gElCanvas.toDataURL("image/jpeg")
-    function onSuccess(uploadedImgUrl) {
-        uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
-        document.querySelector('.share-container').innerHTML = `<a href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" target="_blank">Share on Facebook</a>`
-    }
-    doUploadImg(elForm, onSuccess)
 }
 
+function addImg(img) {
+    gImgs.unshift({ id: gImgs.length + 1, url: img.src, keywords: [] });
+}
 
