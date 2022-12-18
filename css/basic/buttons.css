@@ -74,8 +74,10 @@
     justify-content: center;
     align-self: center;
     height: 57px;
-    margin: 25px;
-    padding: 20px;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 15px;
+    padding-right: 15px;
     font-style: bold;
     border-radius: 40px;
     border: 1px solid var(--clr4);

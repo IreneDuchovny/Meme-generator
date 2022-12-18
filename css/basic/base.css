@@ -62,10 +62,16 @@
     }
 
     .search-bar-input {
-        width: 100vw;
+        width: 90vw;
         color: var(--clr5);
+       
     }
 
+    .search-bar{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
     .gallery-area,
     .saved-memes-area {
         overflow-y: none;
@@ -90,6 +96,14 @@
         align-self: center;
         margin-bottom: 20px;
     }
+
+    .btn-upload{
+        width:90vw;
+     
+        margin-top: 10px;
+    }
+
+
 }
 
 @media (max-width:1245px)and (min-width:600px) {
@@ -168,6 +182,11 @@
         align-self: center;
         margin-bottom: 20px;
     }
+
+    .btn-upload{
+        margin: 15px;
+        margin-top : 25px;
+        }
 }
 
 @media (min-width:1245px) {
@@ -212,4 +231,8 @@
         align-self: center;
         margin-bottom: 20px;
     }
+
+    .btn-upload{
+        margin: 25px;
+        }
 }
